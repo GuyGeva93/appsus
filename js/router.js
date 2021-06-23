@@ -5,13 +5,24 @@ import mailApp from './apps/mail/pages/mail-app.js'
 import homePage from './pages/home-page.js'
 import mailCompose from './apps/mail/cmps/mail-compose.js'
 
+
 const routes = [{
   path: '/',
   component: homePage
 },
 {
   path: '/mail',
-  component: mailApp
+  component: mailApp,
+  children: [
+    {
+      path: '/mail',
+      component: mailList
+    },
+    {
+      path: '/sent',
+      component: mailList
+    }
+  ]
 },
 {
   path: '/mail-preview',

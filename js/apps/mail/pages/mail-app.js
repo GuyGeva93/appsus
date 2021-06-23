@@ -11,7 +11,13 @@ export default {
         <input type="text" placeholder="Search mail">
       </header>
       <section class="mail-app-container">
-        <mail-nav />
+        <nav class="mail-nav">
+        <router-link to="/mail-compose">+ Compose</router-link>
+        <router-link @click.native="filterMails($route.path)" to="/mail">Inbox</router-link>
+        <router-link @click.native="filterMails($route.path)" to="/sent">Sent</router-link>
+        <button>Starred</button>
+     </nav>
+       <router-view></router-view>
         <mail-list :mails="mails" @removeMail="removeMail"/>
      </section>
     </section>
@@ -19,7 +25,8 @@ export default {
 
   data() {
     return {
-      mails: null
+      mails: [],
+      filterBy: null
     }
   },
 
@@ -37,6 +44,24 @@ export default {
           this.loadMails()
         })
     },
+    filterMails(route) {
+      if (route === '/mail') this.loadMails();
+
+      else if (route === '/sent') {
+        let filteredMails = []
+        filteredMails = this.mails.filter(mail => {
+          return (mail.isSent)
+        })
+        this.mails = filteredMails
+      }
+    }
+  },
+
+  computed: {
+    mailsToShow() {
+      console.log(this.$route.path);
+      this.filterMails(this.$route.path)
+    }
   },
 
   created() {

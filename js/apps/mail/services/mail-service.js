@@ -17,6 +17,7 @@ function query() {
 
 function post(newMail) {
   newMail.sentAt = `${new Date().getHours()}:${new Date().getMinutes()}`
+  newMail.isSent = true
   storageService.post(MAIL_KEY, newMail)
     .then(console.log('PUT ok'))
     .catch(err => console.log(err))
