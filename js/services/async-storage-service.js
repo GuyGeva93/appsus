@@ -76,7 +76,8 @@ const gMails = [{
   subject: 'First test',
   body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
   isRead: false,
-  sentAt: '12:18'
+  sentAt: '12:18',
+  isSent: false
 },
 {
   id: _makeId(),
@@ -84,7 +85,8 @@ const gMails = [{
   subject: 'Second test',
   body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
   isRead: true,
-  sentAt: '12:20'
+  sentAt: '12:20',
+  isSent: false
 },
 {
   id: _makeId(),
@@ -92,6 +94,7 @@ const gMails = [{
   subject: 'Third test',
   body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
   isRead: false,
-  sentAt: '12:35'
+  sentAt: '12:35',
+  isSent: false
 }
 ]

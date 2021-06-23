@@ -26,7 +26,7 @@ export default {
 
   methods: {
     composeMail() {
-      console.log(this.newMail)
+      // console.log(this.newMail)
       mailService.post(this.newMail)
     }
   },
