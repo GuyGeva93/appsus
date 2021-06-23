@@ -2,8 +2,8 @@ export default {
     props: ['info'],
     template: `
     <div class="note-txt">
-    <label for=""> Add Your Note
-        <input v-model="txt" name="text-note" id="" placeholder="insert Text Here..."/>
+    <label> Add Your Note
+        <input v-model="txt" name="text-note" id="" placeholder="insert title Here..." @submit="returnTxt"/>
     </label>
     </div>
     `,
@@ -17,4 +17,5 @@ export default {
             this.$emit('setTxt', this.txt)
         }
     },
+    created() {},
 }
