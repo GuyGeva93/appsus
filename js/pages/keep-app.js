@@ -1,19 +1,26 @@
 import { keepService } from "../apps/keep/services/keep-service.js";
 import noteTxt from "../apps/keep/cmps/note-txt.js";
 import noteList from "../apps/keep/pages/note-list.js";
+import noteTodos from "../apps/keep/cmps/note-todos.js";
+import noteImg from "../apps/keep/cmps/note-img.js";
 
 export default {
     components: {
         noteTxt,
-        noteList
+        noteList,
+        noteImg,
+        noteTodos
     },
     template: `
     <section class="keep-app">
-        <form class="notes-form" @submit.prevent="addNote" autocomplete="off">
-            <note-txt :info="cmps" @setTxt="setTxt"/>
-            <!-- <note-img v-if="" :info="cmps.url" @setTxt="setUrl"/>
-            <note-todos :info="cmps.txt" @setTxt="setTxt"/>
-            <note-video :info="cmps.txt" @setTxt="setTxt"/>
+        <div class="type-buttons">
+            <button value="note-txt" @click="selectNoteType" class="select-txt">TEXT</button>
+            <button value="note-img" @click="selectNoteType" class="select-img">IMG</button>
+            <button value="note-todos" @click="selectNoteType" class="select-todos">TODOS</button>
+        </div>
+        <form class="notes-form" @submit.prevent="selectNoteType" autocomplete="off">
+            <component :is="selectedType" :info="cmps" @setTxt="setTxt"/>
+            <!-- <note-video :info="cmps.txt" @setTxt="setTxt"/>
             <note-audio :info="cmps.txt" @setTxt="setTxt"/>
             <note-map/> -->
             <button class="btn-add-note">Add Note</button>
@@ -24,39 +31,9 @@ export default {
     data() {
         return {
             cmps: null,
-            //probably needs to be computed or in another cmp
-            //types: 'NoteTxt', 'NoteImg','NoteTodos'
-            userNote: {
-                type: '',
-                isPinned: false,
-                info: null,
-                // =========== possibleinfos: =====
-                //     type: 'NoteTxt',
-                //     isPinned: true,
-                //     info: {
-                //         txt: ''
-                //     }
-
-                // },
-                // imgNote: {
-                //     type: 'NoteImg',
-                //     isPinned: true,
-                //     info: {
-                //         url: '',
-                //         title: ''
-                //     }
-                // },
-                // todosNote: {
-                //     type: 'NoteTodos',
-                //     isPinned: true,
-                // info: {
-                // label: '',
-                // todos: [
-                // { txt: '', doneAt: Date.now },
-                // }
-                // ]
-                // 
-            },
+            selectedType: 'note-txt',
+            //types: 'note-txt', 'note-img','note-todos'
+            userNote: null
         }
     },
     computed: {
@@ -65,9 +42,17 @@ export default {
         }
     },
     methods: {
-        addNote() {
+        selectNoteType(ev) {
+            if (ev.target.value) {
+                this.selectedType = ev.target.value;
+            }
             console.log('Note Added:');
-            this.cmps.then(res => console.log(res))
+            // this.cmps.then(res => console.log(res))
+            const type = keepService.getNoteTypeFormat(this.selectedType)
+            this.userNote = type
+                // this.addNote(this.userNote)
+        },
+        addNote() {
 
         },
         setTxt(txt) {

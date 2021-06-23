@@ -16,8 +16,8 @@ export default {
           label: {{note.info.label}}
           TODOS:
           <div v-for="todo in this.note.info.todos">
-            {{this.count}}. {{todo.txt}}
-            created At: {{todo.doneAt}}
+            <p>{{this.count}}. {{todo.txt}}</p>
+            <p>created At: {{todo.doneAt}}</p>
           </div>
             </div>
       </div>

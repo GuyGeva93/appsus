@@ -1,7 +1,7 @@
 export default {
     props: ['info'],
     template: `
-    <div class="note-txt">
+    <div class="note-todos">
     <label> Add Your Note
         <input v-model="txt" name="text-note" id="" placeholder="insert text Here..." @submit="returnTxt"/>
     </label>

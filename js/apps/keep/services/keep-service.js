@@ -5,6 +5,7 @@ export const keepService = {
     remove,
     save,
     getById,
+    getNoteTypeFormat
 }
 const NOTES_KEY = 'notes';
 const gNotes = [{
@@ -18,17 +19,19 @@ const gNotes = [{
     {
         id: storageService._makeId(),
         type: "NoteImg",
+        isPinned: false,
         info: {
             url: "img/some-img.jpg",
             title: "Me playing Mi"
         },
         style: {
-            backgroundColor: "#00d"
+            backgroundColor: _createRandColor()
         }
     },
     {
         id: storageService._makeId(),
         type: "NoteTodos",
+        isPinned: false,
         info: {
             label: "How was it:",
             todos: [
@@ -38,6 +41,54 @@ const gNotes = [{
         }
     }
 ];
+
+function getNoteTypeFormat(type) {
+    let cmp;
+    switch (type) {
+        case 'note-txt':
+            cmp = {
+                id: storageService._makeId(),
+                type: "NoteTxt",
+                isPinned: false,
+                info: {
+                    txt: ""
+                }
+            }
+            break;
+        case 'note-img':
+            cmp = {
+                id: storageService._makeId(),
+                type: "NoteImg",
+                isPinned: false,
+                info: {
+                    url: "",
+                    title: ""
+                },
+                style: {
+                    backgroundColor: _createRandColor()
+                }
+            };
+        case 'note-todos':
+
+            cmp = {
+                id: storageService._makeId(),
+                type: "NoteTodos",
+                isPinned: false,
+                info: {
+                    label: "",
+                    todos: [
+                        { txt: "", doneAt: null }
+                        // { txt: "", doneAt: Date.now() }
+
+                    ]
+                }
+            }
+            break;
+
+    }
+    return cmp
+}
+
 
 function query() {
     if (!utilService.loadFromStorage(NOTES_KEY)) {
@@ -61,4 +112,9 @@ function save(note) {
 
 function getById(notesId) {
     return storageService.get(NOTES_KEY, notesId);
+}
+
+function _createRandColor() {
+    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    return randomColor
 }
