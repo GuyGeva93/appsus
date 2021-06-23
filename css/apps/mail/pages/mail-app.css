@@ -1,0 +1,15 @@
+.mail-app {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mail-app-header {
+  display: flex;
+  gap: 20px;
+}
+
+.mail-app-container {
+  display: flex;
+  gap: 30px;
+}

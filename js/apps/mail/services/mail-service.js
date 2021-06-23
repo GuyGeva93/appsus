@@ -1,49 +1,31 @@
 import { utilService } from '../../../services/utils.js'
+import { storageService } from '../../../services/async-storage-service.js'
+
 
 export const mailService = {
   query,
+  post,
   remove
 }
 
+const MAIL_KEY = 'mails'
+
 function query() {
   // return storageService.query()
-  return gMails
+  return storageService.query(MAIL_KEY)
+}
+
+function post(newMail) {
+  newMail.sentAt = `${new Date().getHours()}:${new Date().getMinutes()}`
+  storageService.post(MAIL_KEY, newMail)
+    .then(console.log('PUT ok'))
+    .catch(err => console.log(err))
+
 }
 
 function remove(mailId) {
   // storageService.remove(, mailId)
-
-  const idx = gMails.find(mail => {
-    return mail.id === mailId
-  })
-  gMails.splice(idx, 1)
-
+  return storageService.remove(MAIL_KEY, mailId)
+    .then(console.log('REMOVE ok'))
+    .catch(err => console.log(err))
 }
-
-
-
-const gMails = [{
-  id: utilService._makeId(),
-  sender: 'Guy Geva',
-  subject: 'First test',
-  body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-  isRead: false,
-  sentAt: '12:18'
-},
-{
-  id: utilService._makeId(),
-  sender: 'Guy Geva',
-  subject: 'Second test',
-  body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-  isRead: true,
-  sentAt: '12:20'
-},
-{
-  id: utilService._makeId(),
-  sender: 'Guy Geva',
-  subject: 'Third test',
-  body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-  isRead: false,
-  sentAt: '12:35'
-}
-]
