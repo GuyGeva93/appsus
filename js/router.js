@@ -1,3 +1,4 @@
+import noteApp from './pages/keep-app.js'
 import mailList from './apps/mail/cmps/mail-list.js'
 import mailPreview from './apps/mail/cmps/mail-preview.js'
 import mailApp from './apps/mail/pages/mail-app.js'
@@ -8,7 +9,7 @@ const routes = [{
   component: homePage
 },
 {
-  path: '/mail-app',
+  path: '/mail',
   component: mailApp
 },
 {
@@ -18,24 +19,10 @@ const routes = [{
 {
   path: '/mail-list',
   component: mailList
-}
-
-  // {
-  //   path: '/about',
-  //   component: about
-  // },
-  // {
-  //   path: '/book',
-  //   component: bookApp
-  // },
-  // {
-  //   path: '/book/:bookId',
-  //   component: bookDetails
-  // },
-  // {
-  //   path: '/google-book-add',
-  //   component: googleBookAdd
-  // }
-]
+},
+{
+  path: '/keep',
+  component: noteApp
+}]
 
 export const router = new VueRouter({ routes })

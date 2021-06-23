@@ -1,0 +1,11 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 5px;
+    height: 87vh;
+}
+
+.img-homepage-1 {
+    object-fit: contain;
+}
