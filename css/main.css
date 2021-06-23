@@ -1,0 +1,67 @@
+@import '../css/cmps/home-page.css';
+
+/* TODO:add dark mode */
+
+* {
+    box-sizing: border-box;
+}
+
+body .dark {
+    background-color: #3e3e3e;
+    color: whitesmoke;
+}
+
+body {
+    background-color: whitesmoke;
+    color: #2e2e2e;
+    /* font-family:; */
+    margin: 0;
+    overflow-y: hidden;
+}
+
+html {
+    height: 100vh;
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: gold;
+    margin: 0;
+    height: 8vh;
+}
+
+.logo {
+    margin-left: 10px;
+}
+
+.main-nav {
+    display: flex;
+    flex-wrap: nowrap;
+    align-self: center;
+    object-fit: contain;
+    gap: 7px;
+}
+
+.main-nav img {
+    object-fit: contain;
+    justify-content: space-around;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+}
+
+.app-footer {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 5vh;
+    /* Height of the footer */
+    background: gold;
+}
+
+.app-footer p {
+    align-self: center;
+    margin-left: 10px;
+}
