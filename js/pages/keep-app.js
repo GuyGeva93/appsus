@@ -11,12 +11,12 @@ export default {
     <section class="keep-app">
         <form class="notes-form" @submit.prevent="addNote" autocomplete="off">
             <note-txt :info="cmps" @setTxt="setTxt"/>
-            <!-- <note-img :info="cmps.url" @setTxt="setUrl"/>
+            <!-- <note-img v-if="" :info="cmps.url" @setTxt="setUrl"/>
             <note-todos :info="cmps.txt" @setTxt="setTxt"/>
             <note-video :info="cmps.txt" @setTxt="setTxt"/>
             <note-audio :info="cmps.txt" @setTxt="setTxt"/>
             <note-map/> -->
-            <button class="addNote">Add Note</button>
+            <button class="btn-add-note">Add Note</button>
         </form>
         <note-list v-if="cmps" :notes="cmps"/>
     </section>
@@ -25,27 +25,37 @@ export default {
         return {
             cmps: null,
             //probably needs to be computed or in another cmp
-            txtNote: {
-                type: 'NoteTxt',
-                isPinned: true,
-                info: {
-                    txt: ''
-                }
-            },
-            imgNote: {
-                type: 'NoteImg',
-                isPinned: true,
-                info: {
-                    url: '',
-                    title: ''
-                }
-            },
-            todosNote: {
-                type: 'NoteTodos',
-                isPinned: true,
-                todos: [
-                    // { txt: '', doneAt: Date.now },
-                ]
+            //types: 'NoteTxt', 'NoteImg','NoteTodos'
+            userNote: {
+                type: '',
+                isPinned: false,
+                info: null,
+                // =========== possibleinfos: =====
+                //     type: 'NoteTxt',
+                //     isPinned: true,
+                //     info: {
+                //         txt: ''
+                //     }
+
+                // },
+                // imgNote: {
+                //     type: 'NoteImg',
+                //     isPinned: true,
+                //     info: {
+                //         url: '',
+                //         title: ''
+                //     }
+                // },
+                // todosNote: {
+                //     type: 'NoteTodos',
+                //     isPinned: true,
+                // info: {
+                // label: '',
+                // todos: [
+                // { txt: '', doneAt: Date.now },
+                // }
+                // ]
+                // 
             },
         }
     },
