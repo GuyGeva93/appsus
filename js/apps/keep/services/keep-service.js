@@ -1,4 +1,5 @@
-import { utilService } from '../../../services/utils'
+import { utilService } from '../../../services/utils.js'
+import { storageService } from '../../../services/async-storage-service.js';
 export const keepService = {
     query,
     remove,
@@ -7,6 +8,7 @@ export const keepService = {
 }
 const NOTES_KEY = 'notes';
 const gNotes = [{
+        id: storageService._makeId(),
         type: "NoteTxt",
         isPinned: true,
         info: {
@@ -14,9 +16,10 @@ const gNotes = [{
         }
     },
     {
+        id: storageService._makeId(),
         type: "NoteImg",
         info: {
-            url: "http://some-img/me",
+            url: "img/some-img.jpg",
             title: "Me playing Mi"
         },
         style: {
@@ -24,6 +27,7 @@ const gNotes = [{
         }
     },
     {
+        id: storageService._makeId(),
         type: "NoteTodos",
         info: {
             label: "How was it:",

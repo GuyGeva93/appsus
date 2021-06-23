@@ -4,6 +4,8 @@
 @import '../css/apps/mail/cmps/mail-preview.css';
 @import '../css/apps/mail/cmps/mail-list.css';
 @import '../css/apps/mail/cmps/mail-compose.css';
+@import '../css/cmps/keep-app.css';
+@import '../css/cmps/note-list.css';
 /* TODO:add dark mode */
 
 * {
