@@ -5,7 +5,6 @@
     align-items: center;
 }
 
-
 /* .mail-preview-container {
     display: flex;
     gap: 200px;
@@ -38,7 +37,7 @@ tr.mail-preview-container {
 }
 
 .mail-preview:hover {
-    background-color: rgba(194, 224, 235, 0.294);
+    /* background-color: rgba(194, 224, 235, 0.294); */
     cursor: pointer;
 }
 

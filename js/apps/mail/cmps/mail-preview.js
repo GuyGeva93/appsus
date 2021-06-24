@@ -4,20 +4,22 @@ export default {
   props: ['mail'],
 
   template: `
-    <section class="mail-preview" >
-      <tr @click.stop="mailRead" :class="{read: isRead}" class="mail-preview-container" >
+    <section class="mail-preview" :class="{read: mail.isRead}" >
+      <tr @click.stop="mailExpand" class="mail-preview-container" >
         <td>{{mail.from}}</td>
         <td>{{mail.subject}}</td>
         <td>{{mail.sentAt}}</td>
         <mail-expand :mail="mail" v-if="isExpand" />
       </tr>
+      <i v-if="mail.isRead" class="fa fa-envelope" @click.stop="mailRead" aria-hidden="true"></i>
+      <i v-else class="fa fa-envelope-open" @click.stop="mailRead" aria-hidden="true"></i>
       <button class="btn-icon-trash" @click.stop="remove(mail.id)"><img  src="../img/trash-icon.png"></button>
     </section>
   `,
 
   data() {
     return {
-      isExpand: false
+      isExpand: false,
     }
   },
 
@@ -31,10 +33,13 @@ export default {
       this.mail.isRead = true
     },
     mailRead() {
-      this.mail.isRead = true
+      this.mail.isRead = !this.mail.isRead
+    },
+    mailExpand() {
       this.isExpand = !this.isExpand
       this.expandMail();
-    },
+
+    }
   },
   computed: {
     isRead() {

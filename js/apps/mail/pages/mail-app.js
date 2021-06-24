@@ -14,7 +14,7 @@ export default {
       <section class="mail-app-container">
         <nav class="mail-nav">
         <router-link to="/mail-compose">
-        <div class="link-compose"><img class="plus-icon" src="../../../img/plus-icon.png"> Compose</div></router-link>
+        <div class="link-compose"><img class="plus-icon" src="../img/plus-icon.png"> Compose</div></router-link>
         <router-link @click.native="mailsToShow($route.path)" to="/mail">Inbox {{countMails}}</router-link>
         <router-link @click.native="mailsToShow($route.path)" to="/sent">Sent</router-link>
         <router-link @click.native="mailsToShow($route.path)" to="/draft">Draft</router-link>
@@ -86,7 +86,7 @@ export default {
   computed: {
     countMails() {
       const mailsCount = this.mails.filter(mail => {
-        if (!mail.isDraft) return mail
+        if (!mail.isRead) return mail
       })
       console.log(mailsCount);
       return `(${mailsCount.length})`
