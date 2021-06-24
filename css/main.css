@@ -4,9 +4,10 @@
 @import '../css/apps/mail/cmps/mail-preview.css';
 @import '../css/apps/mail/cmps/mail-list.css';
 @import '../css/apps/mail/cmps/mail-compose.css';
-@import '../css/cmps/keep-app.css';
-@import '../css/cmps/note-list.css';
+@import '../css/apps/keep/keep-app.css';
+@import '../css/apps/keep/cmps/note-list.css';
 @import '../css/cmps/user-msg.css';
+
 /* TODO:add dark mode */
 
 @font-face {
@@ -38,6 +39,9 @@ body .dark {
 }
 
 body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
     background-color: whitesmoke;
     color: #2e2e2e;
     margin: 0;
@@ -48,6 +52,10 @@ body {
 
 /* darkmode button */
 
+ul.tg.list {
+    vertical-align: middle;
+}
+
 .app-header {
     box-sizing: unset;
 }
@@ -57,6 +65,7 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
+    margin-top: 10px
 }
 
 .tgl {
@@ -138,12 +147,15 @@ button {
     cursor: pointer;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     margin: 0;
 }
 
 html {
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .app-header {
@@ -156,6 +168,7 @@ html {
 
 .logo {
     margin-left: 10px;
+    align-self: center;
 }
 
 .main-nav {
@@ -193,18 +206,17 @@ html {
 
 .app-footer {
     display: flex;
-    position: absolute;
-    bottom: 0;
     width: 100%;
     height: 5vh;
-    /* Height of the footer */
     background: gold;
+    margin-top: auto;
 }
 
 .app-footer p {
     align-self: center;
     margin-left: 10px;
 }
+
 
 /* HELPERS */
 
