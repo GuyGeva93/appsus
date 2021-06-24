@@ -95,11 +95,8 @@ export default {
             } else if (this.selectedType === 'note-vid') {
                 console.log('vid');
                 this.userNote.info.label = this.noteDetails.label
-                this.noteDetails.todos.map(todo => {
-                    console.log(todo.txt);
-                    this.userNote.info.todos.push(todo)
-                });
-                // console.log('todos', this.noteDetails);
+                this.userNote.info.url = this.noteDetails.url
+                    // console.log('todos', this.noteDetails);
                 keepService.save(this.userNote).then(() => this.loadNotes())
             }
 

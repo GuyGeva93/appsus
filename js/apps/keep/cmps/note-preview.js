@@ -16,7 +16,7 @@ export default {
         </div>
         <div class="note img" v-else-if="note.type === 'note-img'" >
           <div class="note-content">
-           <p> {{note.info.title}}</p>
+           <p> {{note.info.label}}</p>
             <img :src="note.info.url" >
           </div>
         <div class="note-btns">
@@ -36,6 +36,14 @@ export default {
           <button @click="removeNote(note.id)" class="remove">X</button>
            </div>
             </div>
+            <div class="note vid" v-else-if="note.type === 'note-vid'" >
+          <div class="note-content">
+            <iframe type="url" class="vid-iframe" :src="note.info.url" title="note.info.label" frameborder="0"></iframe>
+          </div>
+        <div class="note-btns">
+        <button @click="removeNote(note.id)" class="remove">X</button>
+         </div>
+          </div>
       </div>
     `,
     data() {
