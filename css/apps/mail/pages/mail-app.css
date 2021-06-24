@@ -23,3 +23,15 @@
     gap: 30px;
     justify-content: space-between;
 }
+
+.mail-app:after {
+    content: "";
+    display: block;
+    border: 1px solid rgb(49, 49, 246);
+}
+
+.mail-app:before {
+    content: "";
+    display: block;
+    border: 1px solid rgb(49, 49, 246);
+}

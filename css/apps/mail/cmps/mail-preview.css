@@ -46,3 +46,25 @@ td {
     display: grid;
     grid-template-columns: repeat(auto-fit, 1fr);
 }
+
+.btn-icon-trash {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.btn-icon-trash:hover {
+    animation: shake 0.4s linear 1;
+}
+
+@keyframes shake {
+    25% {
+        transform: rotate(20deg);
+    }
+    50% {
+        transform: rotate(-20deg);
+    }
+    75% {
+        transform: rotate(20deg);
+    }
+}

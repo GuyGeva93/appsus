@@ -10,11 +10,10 @@
 
 /* TODO:add dark mode */
 
-
-/* @font-face {
-    font-family: ;
-    src: url();
-} */
+@font-face {
+    font-family: Mate-SC;
+    src: url('../fonts/Mate-SC/MateSC-Regular.ttf');
+}
 
 * {
     box-sizing: border-box;
@@ -44,6 +43,8 @@ body {
     color: #2e2e2e;
     margin: 0;
     overflow-y: hidden;
+    font-family: Mate-SC, sans-serif;
+    font-size: 1.1rem;
 }
 
 button {
@@ -81,13 +82,30 @@ html {
     gap: 7px;
 }
 
+.main-nav .router-link-exact-active {
+    background-color: goldenrod;
+    border-radius: 100%;
+}
+
 .main-nav img {
     object-fit: contain;
     justify-content: space-around;
     align-items: center;
+    justify-content: center;
     height: 30px;
     width: 30px;
 }
+
+.main-nav a {
+    padding: 5px
+}
+
+.main-nav a:hover {
+    background-color: goldenrod;
+    border-radius: 100%;
+}
+
+.main-nav img:hover {}
 
 .app-footer {
     display: flex;

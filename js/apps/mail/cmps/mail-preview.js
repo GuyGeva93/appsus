@@ -8,7 +8,7 @@ export default {
         <td>{{mail.subject}}</td>
         <td>{{mail.sentAt}}</td>
 </tr>
-      <button @click.stop="remove(mail.id)">Remove</button>
+      <button class="btn-icon-trash" @click.stop="remove(mail.id)"><img  src="../img/trash-icon.png"></button>
     </section>
   `,
 

@@ -1,6 +1,7 @@
 .mail-nav {
     display: flex;
     flex-direction: column;
+    font-weight: bold;
 }
 
 .mail-nav a {
@@ -9,6 +10,15 @@
     width: 200px;
     height: 60px;
     margin: 0;
+}
+
+.mail-nav a:hover {
+    background-color: rgb(219, 215, 215);
+}
+
+.mail-nav a:first-child:hover {
+    background-color: transparent;
+    /* cursor: unset; */
 }
 
 .plus-icon {
@@ -21,4 +31,9 @@
     gap: 15px;
     border: grey 0.1px solid;
     border-radius: 3em;
+}
+
+.link-compose:hover {
+    background-color: rgb(219, 215, 215);
+    cursor: pointer;
 }
