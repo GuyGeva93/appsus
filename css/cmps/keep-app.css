@@ -5,3 +5,16 @@
 .btn-add-note {
     margin-bottom: 5px;
 }
+
+.keep-icons {
+    height: 40px;
+}
+
+.keep-icons:hover {
+    height: 40px;
+    background-color: unset;
+}
+
+.select-todo:hover {
+    background-color: #908e8e8a;
+}

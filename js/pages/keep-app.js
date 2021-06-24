@@ -18,9 +18,10 @@ export default {
     template: `
     <section class="keep-app">
         <div class="type-buttons">
-            <button value="note-txt" @click="selectNoteType" class="select-txt">TEXT</button>
-            <button value="note-img" @click="selectNoteType" class="select-img">IMG</button>
-            <button value="note-todos" @click="selectNoteType" class="select-todos">TODOS</button>
+            <button value="note-txt" @click="selectNoteType" class=" select-todo select-txt"><img class="select-todo keep-icons" src="../img/txt-icon.png" ></button>
+            <button value="note-img" @click="selectNoteType" class=" select-todo select-img"><img class="keep-icons" src="../img/img-icon.png" ></button>
+            <button value="note-todos" @click="selectNoteType" class=" select-todo select-todos"><img class="keep-icons" src="../img/todo-icon.png" ></button>
+            <button value="note-vid" @click="selectNoteType" class="select-todo select-vid"><img class="keep-icons" src="../img/video-icon.png" ></button>
         </div>
         <form class="notes-form" @submit.prevent="selectNoteType" autocomplete="off">
             <component :is="selectedType" :info="cmps" @setNote="setNote"></component>
