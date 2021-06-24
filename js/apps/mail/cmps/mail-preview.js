@@ -3,13 +3,12 @@ export default {
 
   template: `
     <section class="mail-preview" >
-      <section @click.stop="mailRead" :class="{read: isRead}" class="mail-preview-container" >
-        <span>{{mail.from}}</span>
-        <span>{{mail.subject}}</span>
-        <span>{{mail.sentAt}}</span>
-        <section>sdlkfjsdlkfjksd;</section>
-      </section>
-      <button @click.stop="remove(mail.id)">Remove</button>
+      <tr @click.stop="mailRead" :class="{read: isRead}" class="mail-preview-container" >
+        <td>{{mail.from}}</td>
+        <td>{{mail.subject}}</td>
+        <td>{{mail.sentAt}}</td>
+</tr>
+      <button class="btn-icon-trash" @click.stop="remove(mail.id)"><img  src="../img/trash-icon.png"></button>
     </section>
   `,
 
