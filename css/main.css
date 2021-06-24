@@ -15,6 +15,7 @@
 a {
     text-decoration: none;
     color: #2e2e2e;
+    cursor: pointer;
 }
 
 a:hover {
@@ -33,7 +34,6 @@ body .dark {
 body {
     background-color: whitesmoke;
     color: #2e2e2e;
-    /* font-family:; */
     margin: 0;
     overflow-y: hidden;
 }
