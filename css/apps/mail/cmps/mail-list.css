@@ -1,5 +1,4 @@
-.mail-list {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+/* .mail-list.clean-list {
 }
+
+.mail-list>*:not(:last-child) {} */

@@ -1,5 +1,24 @@
 .mail-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.mail-nav a {
+    border-bottom: rgba(105, 105, 105, 0.315) 1px solid;
+    padding: 5px;
+    width: 200px;
+    height: 60px;
+    margin: 0;
+}
+
+.plus-icon {
+    height: 40px;
+}
+
+.link-compose {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: grey 0.1px solid;
+    border-radius: 3em;
 }

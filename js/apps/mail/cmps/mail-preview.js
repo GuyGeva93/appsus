@@ -1,42 +1,41 @@
-
 export default {
-  props: ['mail'],
+    props: ['mail'],
 
-  template: `
+    template: `
     <section class="mail-preview" >
-      <section @click.stop="mailRead" :class="{read: isRead}" class="mail-preview-container" >
-        <span>{{mail.from}}</span>
-        <span>{{mail.subject}}</span>
-        <span>{{mail.sentAt}}</span>
-      </section>
+      <tr @click.stop="mailRead" :class="{read: isRead}" class="mail-preview-container" >
+        <td>{{mail.from}}</td>
+        <td>{{mail.subject}}</td>
+        <td>{{mail.sentAt}}</td>
+</tr>
       <button @click.stop="remove(mail.id)">Remove</button>
     </section>
   `,
 
-  data() {
-    return {
-      isExpand: false
-    }
-  },
+    data() {
+        return {
+            isExpand: false
+        }
+    },
 
-  methods: {
-    remove(mailId) {
-      console.log('mail-list: remove', mailId)
-      this.$emit('removeMail', mailId)
+    methods: {
+        remove(mailId) {
+            console.log('mail-list: remove', mailId)
+            this.$emit('removeMail', mailId)
+        },
+        expandMail(mailId) {
+            console.log('mail-preview: expandMail:', mailId)
+            this.mail.isRead = true
+        },
+        mailRead() {
+            this.mail.isRead = true
+            this.isExpand = !this.isExpand
+            this.expandMail();
+        },
     },
-    expandMail(mailId) {
-      console.log('mail-preview: expandMail:', mailId)
-      this.mail.isRead = true
-    },
-    mailRead() {
-      this.mail.isRead = true
-      this.isExpand = !this.isExpand
-      this.expandMail();
-    },
-  },
-  computed: {
-    isRead() {
-      return this.mail.isRead
+    computed: {
+        isRead() {
+            return this.mail.isRead
+        }
     }
-  }
 }

@@ -1,31 +1,35 @@
 import mailPreview from "./mail-preview.js"
 
 export default {
-  props: ['mails'],
+    props: ['mails'],
 
-  template: `
-  <ul class="mail-list clean-list">
-    <li v-for="mail in mails" :key="mail.id" >
-      <mail-preview :mail="mail" @removeMail="removeMail" @click.native="expandMail(mail.id)"/>
-    </li>
-  </ul>  
+    template: `
+    
+
+  <table class="mail-list clean-list">
+    <tbody>
+      <tr v-for="mail in mails" :key="mail.id" >
+          <mail-preview :mail="mail" @removeMail="removeMail" @click.native="expandMail(mail.id)"/>
+      </tr>
+</tbody>
+    </table>
   `,
 
-  methods: {
-    removeMail(mailId) {
-      this.$emit('removeMail', mailId)
+    methods: {
+        removeMail(mailId) {
+            this.$emit('removeMail', mailId)
+        },
+        expandMail(mailId) {
+            console.log('mail-list: expandMail:', mailId);
+        }
     },
-    expandMail(mailId) {
-      console.log('mail-list: expandMail:', mailId);
-    }
-  },
 
-  created() {
-    // console.log(this.$route.params);
+    created() {
+        // console.log(this.$route.params);
 
-  },
+    },
 
-  components: {
-    mailPreview
-  },
+    components: {
+        mailPreview
+    },
 }
