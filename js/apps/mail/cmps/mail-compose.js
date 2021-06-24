@@ -4,12 +4,15 @@ import { mailService } from "../services/mail-service.js";
 
 export default {
   template: `
+  <section>
   <form @submit.prevent="composeMail" class="mail-compose">
       <input type="text" v-model="newMail.from" placeholder="From">
       <input type="text" v-model="newMail.subject" placeholder="Subject">
       <textarea v-model="newMail.body" id="" cols="30" rows="10"></textarea>
       <button>SEND</button>
   </form>
+      <button @click.stop="addDraft">Save as draft</button>
+  </section>
   `,
 
   data() {
@@ -19,15 +22,23 @@ export default {
         body: null,
         subject: null,
         isRead: false,
-        sentAt: null
+        sentAt: null,
+        isDraft: false
       }
     }
   },
 
   methods: {
     composeMail() {
-      // console.log(this.newMail)
       mailService.post(this.newMail)
+      console.log('TODO - message to users');
+      this.$router.push('/mail')
+
+    },
+    addDraft() {
+      this.newMail.isDraft = true;
+      mailService.post(this.newMail)
+      this.$router.push('/mail')
     }
   },
 

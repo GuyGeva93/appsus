@@ -21,6 +21,10 @@ const routes = [{
     {
       path: '/sent',
       component: mailList
+    },
+    {
+      path: '/draft',
+      component: mailList
     }
   ]
 },

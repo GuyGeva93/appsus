@@ -7,15 +7,15 @@ export default {
   template: `
     <section class="mail-app">
       <header class="mail-app-header">
-        <h2>tMail</h2>
+        <h2>G-mail</h2>
         <input type="text" placeholder="Search mail">
       </header>
       <section class="mail-app-container">
         <nav class="mail-nav">
         <router-link to="/mail-compose">+ Compose</router-link>
-        <router-link @click.native="filterMails($route.path)" to="/mail">Inbox</router-link>
-        <router-link @click.native="filterMails($route.path)" to="/sent">Sent</router-link>
-        <button>Starred</button>
+        <router-link @click.native="mailsToShow($route.path); setFilter($route.path)" to="/mail">Inbox {{countMails}}</router-link>
+        <router-link @click.native="mailsToShow($route.path); setFilter($route.path)" to="/sent">Sent</router-link>
+        <router-link @click.native="mailsToShow($route.path) ; setFilter($route.path)" to="/draft">Draft</router-link>
      </nav>
        <router-view></router-view>
         <mail-list :mails="mails" @removeMail="removeMail"/>
@@ -26,14 +26,29 @@ export default {
   data() {
     return {
       mails: [],
-      filterBy: null
+      mailsCount: null,
+      filterBy: '/mail',
     }
   },
 
   methods: {
     loadMails() {
       mailService.query()
-        .then(mails => this.mails = mails)
+        .then(mails => {
+          if (this.filterBy === '/sent') {
+            this.mails = mails.filter(mail => {
+              return (mail.isSent)
+            })
+          } else if (this.filterBy === '/draft') {
+            this.mails = mails.filter(mail => {
+              return (mail.isDraft)
+            })
+          } else {
+            this.mails = mails.filter(mail => {
+              return (!mail.isDraft)
+            })
+          }
+        })
     },
     removeMail(mailId) {
       console.log('mail-app: remove', mailId);
@@ -44,24 +59,23 @@ export default {
           this.loadMails()
         })
     },
-    filterMails(route) {
-      if (route === '/mail') this.loadMails();
-
-      else if (route === '/sent') {
-        let filteredMails = []
-        filteredMails = this.mails.filter(mail => {
-          return (mail.isSent)
-        })
-        this.mails = filteredMails
-      }
-    }
+    setFilter(route) {
+      this.filterBy = route
+    },
+    mailsToShow() {
+      this.loadMails()
+    },
   },
 
   computed: {
-    mailsToShow() {
-      console.log(this.$route.path);
-      this.filterMails(this.$route.path)
-    }
+    countMails() {
+      const mailsCount = this.mails.filter(mail => {
+        if (!mail.isDraft) return mail
+      })
+      console.log(mailsCount);
+      return `(${mailsCount.length})`
+    },
+
   },
 
   created() {

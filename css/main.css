@@ -14,6 +14,20 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+    color: #2e2e2e;
+    cursor: pointer;
+}
+
+a:hover {
+    background-color: #cccfcf;
+}
+
+a:visited {
+    color: #2e2e2e;
+}
+
 body .dark {
     background-color: #3e3e3e;
     color: whitesmoke;
@@ -22,7 +36,6 @@ body .dark {
 body {
     background-color: whitesmoke;
     color: #2e2e2e;
-    /* font-family:; */
     margin: 0;
     overflow-y: hidden;
 }

@@ -12,7 +12,7 @@ export const storageService = {
 }
 
 function query(entityType) {
-    var entities = JSON.parse(localStorage.getItem(entityType)) || gMails
+    var entities = JSON.parse(localStorage.getItem(entityType)) || []
     return Promise.resolve(entities);
 }
 
@@ -30,7 +30,8 @@ function post(entityType, newEntity) {
     // newEntity.id = _makeId()
     return query(entityType)
         .then(entities => {
-            entities.push(newEntity);
+            // entities.push(newEntity);
+            entities.unshift(newEntity);
             _save(entityType, entities)
             return newEntity;
         })
@@ -39,7 +40,8 @@ function post(entityType, newEntity) {
 function postMany(entityType, newEntities) {
     return query(entityType)
         .then(entities => {
-            entities.push(...newEntities);
+            // entities.push(...newEntities);
+            entities.unshift(...newEntities);
             _save(entityType, entities)
             return entities;
         })
@@ -77,32 +79,3 @@ function _makeId(length = 5) {
     return text;
 }
 
-
-const gMails = [{
-        id: _makeId(),
-        from: 'Guy Geva',
-        subject: 'First test',
-        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-        isRead: false,
-        sentAt: '12:18',
-        isSent: false
-    },
-    {
-        id: _makeId(),
-        from: 'Guy Geva',
-        subject: 'Second test',
-        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-        isRead: true,
-        sentAt: '12:20',
-        isSent: false
-    },
-    {
-        id: _makeId(),
-        from: 'Guy Geva',
-        subject: 'Third test',
-        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-        isRead: false,
-        sentAt: '12:35',
-        isSent: false
-    }
-]
