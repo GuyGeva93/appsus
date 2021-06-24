@@ -81,6 +81,17 @@ function getNoteTypeFormat(type) {
                 }
             }
             break;
+        case 'note-vid':
+            cmp = {
+                id: storageService._makeId(),
+                type: "note-vid",
+                isPinned: false,
+                info: {
+                    label: "",
+                    url: "",
+                }
+            }
+            break;
 
     }
     return cmp
