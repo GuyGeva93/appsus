@@ -86,7 +86,7 @@ export default {
   computed: {
     countMails() {
       const mailsCount = this.mails.filter(mail => {
-        if (!mail.isDraft) return mail
+        if (!mail.isRead) return mail
       })
       console.log(mailsCount);
       return `(${mailsCount.length})`
