@@ -1,3 +1,5 @@
+import mailExpand from "./mail-expand.js"
+
 export default {
   props: ['mail'],
 
@@ -7,7 +9,8 @@ export default {
         <td>{{mail.from}}</td>
         <td>{{mail.subject}}</td>
         <td>{{mail.sentAt}}</td>
-</tr>
+        <mail-expand :mail="mail" v-if="isExpand" />
+      </tr>
       <button class="btn-icon-trash" @click.stop="remove(mail.id)"><img  src="../img/trash-icon.png"></button>
     </section>
   `,
@@ -37,5 +40,8 @@ export default {
     isRead() {
       return this.mail.isRead
     }
+  },
+  components: {
+    mailExpand
   }
 }
