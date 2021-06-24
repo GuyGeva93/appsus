@@ -5,6 +5,7 @@
     align-items: center;
 }
 
+
 /* .mail-preview-container {
     display: flex;
     gap: 200px;
@@ -44,6 +45,11 @@ tr.mail-preview-container {
 td {
     display: grid;
     grid-template-columns: repeat(auto-fit, 1fr);
+    color: #2e2e2e;
+}
+
+tr:hover {
+    background-color: #8e889b;
 }
 
 .btn-icon-trash {
