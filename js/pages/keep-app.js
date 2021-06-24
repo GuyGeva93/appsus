@@ -4,6 +4,7 @@ import noteTxt from "../apps/keep/cmps/note-txt.js";
 import noteList from "../apps/keep/pages/note-list.js";
 import noteTodos from "../apps/keep/cmps/note-todos.js";
 import noteImg from "../apps/keep/cmps/note-img.js";
+import noteVid from "../apps/keep/cmps/note-vid.js"
 import { eventBus } from "../services/event-bus-service.js";
 import userMsg from "../cmps/user-msg.js";
 
@@ -13,21 +14,32 @@ export default {
         noteList,
         noteImg,
         noteTodos,
-        userMsg
+        userMsg,
+        noteVid
     },
     template: `
     <section class="keep-app">
         <div class="type-buttons">
-            <button value="note-txt" @click="selectNoteType" class=" select-todo select-txt"><img class="select-todo keep-icons" src="../img/txt-icon.png" ></button>
-            <button value="note-img" @click="selectNoteType" class=" select-todo select-img"><img class="keep-icons" src="../img/img-icon.png" ></button>
-            <button value="note-todos" @click="selectNoteType" class=" select-todo select-todos"><img class="keep-icons" src="../img/todo-icon.png" ></button>
-            <button value="note-vid" @click="selectNoteType" class="select-todo select-vid"><img class="keep-icons" src="../img/video-icon.png" ></button>
+            <button  @click="selectNoteType" class=" select-note select-txt" :class="{isActive: this.selectedType === 'note-txt'}">
+                <img id="note-txt" class="keep-icons" src="../img/txt-icon.png" >
+            </button>
+
+            <button @click="selectNoteType" class=" select-note select-img" :class="{isActive: this.selectedType=== 'note-img'}">
+                <img id="note-img" class="keep-icons" src="../img/img-icon.png" >
+            </button>
+
+            <button @click="selectNoteType" class=" select-note select-todos" :class="{isActive: this.selectedType=== 'note-todos'}">
+                <img id="note-todos" class="keep-icons" src="../img/todo-icon.png" >
+            </button>
+
+            <button @click="selectNoteType" class="select-note select-vid" :class="{isActive: this.selectedType=== 'note-vid'}">
+                <img id="note-vid" class="keep-icons" src="../img/video-icon.png" >
+            </button>
+
         </div>
         <form class="notes-form" @submit.prevent="selectNoteType" autocomplete="off">
-            <component :is="selectedType" :info="cmps" @setNote="setNote"></component>
-            <!-- <note-video :info="cmps.txt" @setTxt="setTxt"/>
-            <note-audio :info="cmps.txt" @setTxt="setTxt"/>
-            <note-map/> -->
+            <component  :is="selectedType" :info="cmps" @setNote="setNote"></component>
+            
             <input type="submit" class="btn-add-note" value="Add Note" @click="addNote"/>
         </form>
         <note-list @removeNote="removeNote" v-if="cmps" :notes="cmps"/>
@@ -39,14 +51,14 @@ export default {
             selectedType: 'note-txt',
             //types: 'note-txt', 'note-img','note-todos'
             userNote: null,
-            noteDetails: {}
+            noteDetails: {},
+            isActive: ''
         }
     },
     computed: {
         notes() {
             return this.cmps
-        },
-
+        }
     },
     methods: {
         loadNotes() {
@@ -55,11 +67,7 @@ export default {
             })
         },
         selectNoteType(ev) {
-            if (ev.target.value) {
-                this.selectedType = ev.target.value;
-            }
-            // const type = keepService.getNoteTypeFormat(this.selectedType)
-            // this.userNote = type
+            this.selectedType = ev.target.id;
         },
         addNote() {
             this.userNote = keepService.getNoteTypeFormat(this.selectedType)
@@ -77,6 +85,15 @@ export default {
                 keepService.save(this.userNote).then(() => this.loadNotes())
 
             } else if (this.selectedType === 'note-todos') {
+                this.userNote.info.label = this.noteDetails.label
+                this.noteDetails.todos.map(todo => {
+                    console.log(todo.txt);
+                    this.userNote.info.todos.push(todo)
+                });
+                // console.log('todos', this.noteDetails);
+                keepService.save(this.userNote).then(() => this.loadNotes())
+            } else if (this.selectedType === 'note-vid') {
+                console.log('vid');
                 this.userNote.info.label = this.noteDetails.label
                 this.noteDetails.todos.map(todo => {
                     console.log(todo.txt);

@@ -1,0 +1,53 @@
+.keep-app {
+    padding: 10px;
+}
+
+.keep-icons {
+    height: 40px;
+}
+
+.keep-icons:hover {
+    height: 40px;
+    background-color: unset;
+}
+
+.select-note:hover {
+    background-color: #908e8e8a;
+}
+
+.notes-form {
+    background-color: #5e5e5e;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    height: 210px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.btn-add-note {
+    margin-bottom: 5px;
+    width: 70px;
+    background-color: #4e4e4e;
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+.note-txt input {
+    width: 300px;
+    margin: 5px;
+}
+
+.note-txt textarea {
+    margin: 5px;
+    width: 400px;
+    height: 100px;
+}
+
+.type-buttons {
+    background-color: #5e5e5e;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}

@@ -3,8 +3,8 @@ export default {
     template: `
     <div class="note-img">
     <label> Add Your Note
-        <input v-model="img.title" name="img-note" id="" placeholder="insert your title Here..." @blur="returnImg" />
-        <input type="url" v-model="img.url" name="img-note" id="" placeholder="insert your url Here..." @blur="returnImg" />
+        <input v-model="img.label" name="img-note" id="" placeholder="insert your title Here..." @blur="returnImg" />
+        <input type="url" v-model="img.url" name="img-note" id="" placeholder="insert your images url Here..." @blur="returnImg" />
     </label>
     </div>
     `,
@@ -13,7 +13,7 @@ export default {
             img: {
                 url: '',
                 style: '',
-                title: ''
+                label: ''
             }
 
         }

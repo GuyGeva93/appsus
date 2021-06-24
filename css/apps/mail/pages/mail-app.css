@@ -28,11 +28,11 @@
 .mail-app:after {
     content: "";
     display: block;
-    border: 1px solid rgb(49, 49, 246);
+    border: 1px solid rgb(223, 223, 238);
 }
 
 .mail-app:before {
     content: "";
     display: block;
-    border: 1px solid rgb(49, 49, 246);
+    border: 1px solid rgb(223, 223, 238);
 }
