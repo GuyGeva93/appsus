@@ -1,7 +1,6 @@
 .note-list {
     display: grid;
-    flex-direction: row;
-    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fit, 300px);
     gap: 5px;
 }
 
@@ -12,6 +11,7 @@
     flex-direction: column;
     min-height: 200px;
     min-width: 200px;
+    max-width: 400px;
     border: 1px black solid;
     padding: 0;
     background-color: lightseagreen;
@@ -44,4 +44,13 @@
     border-bottom: 1px solid #000;
     padding-bottom: 2px;
     list-style: none;
+}
+
+.note-img input,
+.note-txt input,
+.note-todos input,
+.note-vid input {
+    width: 300px;
+    height: 25px;
+    margin-bottom: 5px;
 }

@@ -3,7 +3,9 @@ export default {
     template: `
     <div class="note-todos">
     <label> Add Your Note
+        <br>
         <input v-model="todos.label" name="todos-note" placeholder="insert text Here..." @blur="returnTxt" />
+        <br>
         <input v-model="todos.todos.txt" name="todos-note" placeholder="insert TODO Here..." @blur="returnTxt" />
         <button @click.stop="addTodo" class="add-todo">Add Todo</button>
     </label>

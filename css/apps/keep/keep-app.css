@@ -1,5 +1,6 @@
 .keep-app {
     padding: 10px;
+    min-height: 87vh;
 }
 
 .keep-icons {
@@ -12,7 +13,7 @@
 }
 
 .select-note:hover {
-    background-color: #908e8e8a;
+    background-color: #e6e1e18a;
 }
 
 .notes-form {
@@ -28,10 +29,15 @@
 
 .btn-add-note {
     margin-bottom: 5px;
-    width: 70px;
+    width: 80px;
+    height: 40px;
     background-color: #4e4e4e;
     color: whitesmoke;
     cursor: pointer;
+}
+
+.btn-add-note:hover {
+    background-color: #858688;
 }
 
 .note-txt input {
@@ -50,4 +56,8 @@
     padding: 10px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+}
+
+.isActive {
+    background-color: gold;
 }

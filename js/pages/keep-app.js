@@ -40,7 +40,7 @@ export default {
         <form class="notes-form" @submit.prevent="selectNoteType" autocomplete="off">
             <component  :is="selectedType" :info="cmps" @setNote="setNote"></component>
             
-            <input type="submit" class="btn-add-note" value="Add Note" @click="addNote"/>
+            <input type="submit" class="btn-add-note" value="Add Note" @click.stop.prevent="addNote"/>
         </form>
         <note-list @removeNote="removeNote" v-if="cmps" :notes="cmps"/>
     </section>
@@ -105,6 +105,7 @@ export default {
 
         },
         setNote(note) {
+            console.log(note);
             this.noteDetails = note
         },
         removeNote(noteId) {
