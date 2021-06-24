@@ -1,0 +1,28 @@
+.main-nav {
+  display: flex;
+  align-self: center;
+  gap: 7px;
+}
+
+.main-nav .router-link-exact-active {
+  background-color: goldenrod;
+  border-radius: 100%;
+}
+
+.main-nav img {
+  object-fit: contain;
+  justify-content: space-around;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+}
+
+.main-nav a {
+  padding: 5px
+}
+
+.main-nav a:hover {
+  background-color: goldenrod;
+  border-radius: 100%;
+}

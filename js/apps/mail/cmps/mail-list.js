@@ -6,9 +6,9 @@ export default {
   template: `
   <table class="mail-list">
     <tbody>
-      <tr v-for="mail in mails" :key="mail.id" >
-          <mail-preview :mail="mail" @removeMail="removeMail"/>
-      </tr>
+      <!-- <tr > -->
+          <mail-preview  v-for="mail in mails" :key="mail.id" :mail="mail" @removeMail="removeMail"/>
+      <!-- </tr> -->
     </tbody>
   </table>
   `,

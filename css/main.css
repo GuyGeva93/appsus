@@ -7,13 +7,19 @@
 @import '../css/apps/keep/keep-app.css';
 @import '../css/apps/keep/cmps/note-list.css';
 @import '../css/cmps/user-msg.css';
-
+@import '../css/pages/app-header.css';
+@import '../css/pages/app-footer.css';
+@import './cmps/main-nav.css';
 /* TODO:add dark mode */
+
+/* FONTS */
 
 @font-face {
     font-family: Mate-SC;
     src: url('../fonts/Mate-SC/MateSC-Regular.ttf');
 }
+
+/* GENERAL ELEMENTS */
 
 * {
     box-sizing: border-box;
@@ -33,7 +39,6 @@ a:visited {
     color: #2e2e2e;
 }
 
-
 /* body .dark {
     background-color: #3e3e3e;
     color: whitesmoke;
@@ -51,6 +56,19 @@ body {
     font-size: 1.1rem;
 }
 
+button {
+    cursor: pointer;
+}
+
+h1, h2, h3, h4 {
+    margin: 0;
+}
+
+html {
+    min-height: 100vh;
+}
+
+/* ====================== */
 
 /* darkmode button */
 
@@ -58,39 +76,15 @@ ul.tg.list {
     vertical-align: middle;
 }
 
-.app-header {
-    box-sizing: unset;
-}
-
-.app-header ul,
-.app-header li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    margin-top: 10px
-}
-
 .tgl {
     display: none;
 }
 
-.tgl,
-.tgl:after,
-.tgl:before,
-.tgl *,
-.tgl *:after,
-.tgl *:before,
-.tgl+.tgl-btn {
+.tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl+.tgl-btn {
     box-sizing: border-box;
 }
 
-.tgl::selection,
-.tgl:after::selection,
-.tgl:before::selection,
-.tgl *::selection,
-.tgl *:after::selection,
-.tgl *:before::selection,
-.tgl+.tgl-btn::selection {
+.tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl+.tgl-btn::selection {
     background: none;
 }
 
@@ -104,8 +98,7 @@ ul.tg.list {
     user-select: none;
 }
 
-.tgl+.tgl-btn:after,
-.tgl+.tgl-btn:before {
+.tgl+.tgl-btn:after, .tgl+.tgl-btn:before {
     position: relative;
     display: block;
     content: "";
@@ -142,83 +135,7 @@ ul.tg.list {
     background: #1e201f;
 }
 
-
 /* ====================== */
-
-button {
-    cursor: pointer;
-}
-
-h1,
-h2,
-h3,
-h4 {
-    margin: 0;
-}
-
-html {
-    min-height: 100vh;
-}
-
-.app-header {
-    display: flex;
-    justify-content: space-between;
-    background-color: gold;
-    margin: 0;
-    height: 8vh;
-}
-
-.logo {
-    margin-left: 10px;
-    align-self: center;
-    font-family: Mate-SC;
-    color: #2e2e2e;
-}
-
-.main-nav {
-    display: flex;
-    flex-wrap: nowrap;
-    align-self: center;
-    object-fit: contain;
-    gap: 7px;
-}
-
-.main-nav .router-link-exact-active {
-    background-color: goldenrod;
-    border-radius: 100%;
-}
-
-.main-nav img {
-    object-fit: contain;
-    justify-content: space-around;
-    align-items: center;
-    justify-content: center;
-    height: 30px;
-    width: 30px;
-}
-
-.main-nav a {
-    padding: 5px
-}
-
-.main-nav a:hover {
-    background-color: goldenrod;
-    border-radius: 100%;
-}
-
-.app-footer {
-    display: flex;
-    width: 100%;
-    height: 5vh;
-    background: gold;
-    margin-top: auto;
-}
-
-.app-footer p {
-    align-self: center;
-    margin-left: 10px;
-}
-
 
 /* HELPERS */
 
@@ -228,7 +145,6 @@ html {
     padding: 0;
 }
 
-.fa-envelope,
-.fa-envelope-open {
+.fa-envelope, .fa-envelope-open {
     color: #3e3e3e;
 }

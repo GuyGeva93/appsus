@@ -1,0 +1,13 @@
+.app-footer {
+  display: flex;
+  justify-content: center;
+  height: 6vh;
+  background: gold;
+  color: #2e2e2e;
+  margin-top: auto;
+}
+
+.app-footer p {
+  align-self: center;
+  margin-left: 10px;
+}

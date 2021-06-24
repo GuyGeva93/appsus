@@ -1,7 +1,7 @@
 export default {
     template: `
     <header class="app-header">
-        <div class="logo">
+        <div class="app-header-logo">
            <h2>APPSUS</h2>
         </div>
         <ul class="tg-list">

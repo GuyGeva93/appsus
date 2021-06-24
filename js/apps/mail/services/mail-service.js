@@ -38,9 +38,9 @@ function remove(mailId) {
 
 const gMails = [{
   id: storageService._makeId(),
-  from: 'Guy Geva',
-  subject: 'First test',
-  body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+  from: 'Yaron Bitton',
+  subject: 'Poked in the dark?',
+  body: 'Someone has just poked in the dark.',
   isRead: false,
   sentAt: '12:18',
   isSent: false,
@@ -48,9 +48,9 @@ const gMails = [{
 },
 {
   id: storageService._makeId(),
-  from: 'Guy Geva',
-  subject: 'Second test',
-  body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+  from: 'Lord Eddard Stark',
+  subject: 'Winter is coming',
+  body: 'Buy a coat.',
   isRead: true,
   sentAt: '12:20',
   isSent: false,
@@ -58,8 +58,18 @@ const gMails = [{
 },
 {
   id: storageService._makeId(),
-  from: 'Guy Geva',
-  subject: 'Third test',
+  from: 'Shabak',
+  subject: 'Watching you',
+  body: 'Be carefull!',
+  isRead: false,
+  sentAt: '12:35',
+  isSent: false,
+  isDraft: false
+},
+{
+  id: storageService._makeId(),
+  from: 'Lorem Ipsum',
+  subject: 'Dolor sit amet?',
   body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
   isRead: false,
   sentAt: '12:35',
