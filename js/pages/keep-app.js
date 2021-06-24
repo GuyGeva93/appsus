@@ -68,12 +68,21 @@ export default {
                 this.userNote.info.title = this.noteDetails.title
                 console.log(this.userNote);
                 keepService.save(this.userNote).then(() => this.loadNotes())
+
             } else if (this.selectedType === 'note-img') {
                 console.log('image', this.noteDetails);
-                this.loadNotes()
+                this.userNote.info.title = this.noteDetails.title
+                this.userNote.info.url = this.noteDetails.url
+                keepService.save(this.userNote).then(() => this.loadNotes())
+
             } else if (this.selectedType === 'note-todos') {
-                console.log('todos', this.noteDetails);
-                this.loadNotes()
+                this.userNote.info.label = this.noteDetails.label
+                this.noteDetails.todos.map(todo => {
+                    console.log(todo.txt);
+                    this.userNote.info.todos.push(todo)
+                });
+                // console.log('todos', this.noteDetails);
+                keepService.save(this.userNote).then(() => this.loadNotes())
             }
 
         },

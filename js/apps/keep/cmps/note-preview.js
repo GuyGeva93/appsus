@@ -1,43 +1,52 @@
+import { storageService } from "../../../services/async-storage-service.js";
+
 export default {
     props: ['note'],
 
     template: `
     <div class="note-preview">
       <div class="note txt" v-if="note.type === 'note-txt'" >
+         <div class="note-content">
         {{note.info.txt}}
-        <button @click="removeNote(note.id)" class="remove">X</button>
+      </div>
+      <div class="note-btns">
 
+        <button @click="removeNote(note.id)" class="remove">X</button>
+      </div>
         </div>
         <div class="note img" v-else-if="note.type === 'note-img'" >
-        {{note.info.title}}
+          <div class="note-content">
+           <p> {{note.info.title}}</p>
+            <img :src="note.info.url" >
+          </div>
+        <div class="note-btns">
         <button @click="removeNote(note.id)" class="remove">X</button>
-
-        <img :src="note.info.url" >
+         </div>
           </div>
           <div class="note todos" v-else-if="note.type === 'note-todos'" >
-          <!-- {{note.info.label}} -->
-          <!-- {{note}} -->
+        <div class="note-content">
           label: {{note.info.label}}
-          TODOS:
-          <div v-for="todo in this.note.info.todos">
-            <p>{{this.count}}. {{todo.txt}}</p>
-            <p>created At: {{todo.doneAt}}</p>
-          </div>
+          <ul class="todo" v-for="todo in this.note.info.todos">
+            <li >
+              <input type="checkbox" :id="randomId"> {{todo.txt}}
+            </li>
+          </ul>
+        </div>
+          <div class="note-btns">
           <button @click="removeNote(note.id)" class="remove">X</button>
+           </div>
             </div>
       </div>
     `,
     data() {
         return {
-            todo: '',
-            count: 1
+            todo: ''
         }
     },
     computed: {
-        // spreadTodos() {
-        //     const todos = this.note.info.todos.map(todo => todo)
-        //     return todos
-        // }
+        randomId() {
+            return storageService._makeId()
+        }
     },
     methods: {
         removeNote(noteId) {

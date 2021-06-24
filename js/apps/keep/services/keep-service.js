@@ -77,11 +77,7 @@ function getNoteTypeFormat(type) {
                 isPinned: false,
                 info: {
                     label: "",
-                    todos: [
-                        { txt: "", doneAt: null }
-                        // { txt: "", doneAt: Date.now() }
-
-                    ]
+                    todos: []
                 }
             }
             break;

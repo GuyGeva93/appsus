@@ -6,15 +6,42 @@
 }
 
 .note {
+    position: relative;
+    justify-content: space-between;
     display: flex;
     flex-direction: column;
     min-height: 200px;
-    width: 200px;
+    min-width: 200px;
     border: 1px black solid;
-    padding: 5px;
+    padding: 0;
     background-color: lightseagreen;
+}
+
+.note-content {
+    padding: 5px;
+}
+
+.note button {
+    background-color: burlywood;
+    width: 25px;
+    height: 25px;
+}
+
+.note-btns {
+    display: flex;
+    justify-items: flex-end;
+    justify-content: flex-end;
+    background-color: #3e3e3e;
+    padding: 4px;
 }
 
 .note img {
     object-fit: contain;
+    max-width: 200px;
+}
+
+.todo {
+    border-bottom: 1px solid #000;
+    padding-bottom: 2px;
+    list-style: none;
 }
