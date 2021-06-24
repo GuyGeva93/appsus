@@ -11,7 +11,6 @@ export const mailService = {
 const MAIL_KEY = 'mails'
 
 function query() {
-  // return storageService.query()
   return storageService.query(MAIL_KEY)
 }
 
@@ -19,7 +18,6 @@ function post(newMail) {
   newMail.sentAt = `${new Date().getHours()}:${new Date().getMinutes()}`
   newMail.isSent = true
   storageService.post(MAIL_KEY, newMail)
-    .then(console.log('PUT ok'))
     .catch(err => console.log(err))
 
 }

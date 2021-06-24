@@ -4,10 +4,10 @@ export default {
 
   template: `
     <div class="mail-preview" >
-      <section class="mail-preview-container" >
+      <section @click.stop="mailRead" :class="{read: isRead}" class="mail-preview-container" >
         <span>{{mail.from}}</span>
         <span>{{mail.subject}}</span>
-        <span>{{mail.isRead}}</span>
+        <!-- <span>{{mail.isRead}}</span> -->
         <span>{{mail.sentAt}}</span>
       </section>
       <button @click.stop="remove(mail.id)">Remove</button>
@@ -22,7 +22,14 @@ export default {
     expandMail(mailId) {
       console.log('mail-preview: expandMail:', mailId)
       this.mail.isRead = true
-
-    }
+    },
+    mailRead() {
+      this.mail.isRead = true
+    },
   },
+  computed: {
+    isRead() {
+      return this.mail.isRead
+    }
+  }
 }

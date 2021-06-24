@@ -13,7 +13,6 @@ export default {
 
   methods: {
     removeMail(mailId) {
-      console.log('mail-app: remove', mailId);
       this.$emit('removeMail', mailId)
     },
     expandMail(mailId) {

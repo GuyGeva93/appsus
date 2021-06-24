@@ -26,8 +26,10 @@ export default {
 
   methods: {
     composeMail() {
-      // console.log(this.newMail)
       mailService.post(this.newMail)
+      console.log('TODO - message to users');
+      this.$router.push('/mail')
+
     }
   },
 

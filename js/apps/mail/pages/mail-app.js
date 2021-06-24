@@ -13,8 +13,8 @@ export default {
       <section class="mail-app-container">
         <nav class="mail-nav">
         <router-link to="/mail-compose">+ Compose</router-link>
-        <router-link @click.native="filterMails($route.path)" to="/mail">Inbox</router-link>
-        <router-link @click.native="filterMails($route.path)" to="/sent">Sent</router-link>
+        <router-link @click.native="mailsToShow($route.path); setFilter($route.path)" to="/mail">Inbox {{countMails}}</router-link>
+        <router-link @click.native="mailsToShow($route.path); setFilter($route.path)" to="/sent">Sent</router-link>
         <button>Starred</button>
      </nav>
        <router-view></router-view>
@@ -26,14 +26,23 @@ export default {
   data() {
     return {
       mails: [],
-      filterBy: null
+      filterBy: '/mail'
     }
   },
 
   methods: {
     loadMails() {
       mailService.query()
-        .then(mails => this.mails = mails)
+        .then(mails => {
+          console.log(this.filterBy);
+          if (this.filterBy === '/sent') {
+            this.mails = mails.filter(mail => {
+              return (mail.isSent)
+            })
+          } else {
+            this.mails = mails
+          }
+        })
     },
     removeMail(mailId) {
       console.log('mail-app: remove', mailId);
@@ -44,24 +53,26 @@ export default {
           this.loadMails()
         })
     },
-    filterMails(route) {
-      if (route === '/mail') this.loadMails();
-
+    setFilter(route) {
+      this.filterBy = route
+    },
+    mailsToShow(route) {
+      if (route === '/mail' || route === '/inbox') this.loadMails()
       else if (route === '/sent') {
-        let filteredMails = []
-        filteredMails = this.mails.filter(mail => {
+        const mailsToShow = this.mails.filter(mail => {
           return (mail.isSent)
         })
-        this.mails = filteredMails
+        this.mails = mailsToShow
       }
-    }
+    },
   },
 
   computed: {
-    mailsToShow() {
-      console.log(this.$route.path);
-      this.filterMails(this.$route.path)
-    }
+
+    countMails() {
+      return `(${this.mails.length})`
+    },
+
   },
 
   created() {
