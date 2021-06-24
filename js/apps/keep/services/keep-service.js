@@ -10,7 +10,7 @@ export const keepService = {
 const NOTES_KEY = 'notes';
 const gNotes = [{
         id: storageService._makeId(),
-        type: "NoteTxt",
+        type: "note-txt",
         isPinned: true,
         info: {
             txt: "Fullstack Me Baby!"
@@ -18,7 +18,7 @@ const gNotes = [{
     },
     {
         id: storageService._makeId(),
-        type: "NoteImg",
+        type: "note-img",
         isPinned: false,
         info: {
             url: "img/some-img.jpg",
@@ -30,7 +30,7 @@ const gNotes = [{
     },
     {
         id: storageService._makeId(),
-        type: "NoteTodos",
+        type: "note-todos",
         isPinned: false,
         info: {
             label: "How was it:",
@@ -48,17 +48,18 @@ function getNoteTypeFormat(type) {
         case 'note-txt':
             cmp = {
                 id: storageService._makeId(),
-                type: "NoteTxt",
+                type: "note-txt",
                 isPinned: false,
                 info: {
-                    txt: ""
+                    title: '',
+                    txt: ''
                 }
             }
             break;
         case 'note-img':
             cmp = {
                 id: storageService._makeId(),
-                type: "NoteImg",
+                type: "note-img",
                 isPinned: false,
                 info: {
                     url: "",
@@ -68,11 +69,11 @@ function getNoteTypeFormat(type) {
                     backgroundColor: _createRandColor()
                 }
             };
+            break;
         case 'note-todos':
-
             cmp = {
                 id: storageService._makeId(),
-                type: "NoteTodos",
+                type: "note-todos",
                 isPinned: false,
                 info: {
                     label: "",
@@ -91,11 +92,12 @@ function getNoteTypeFormat(type) {
 
 
 function query() {
+    // console.log(utilService.loadFromStorage(NOTES_KEY));
     if (!utilService.loadFromStorage(NOTES_KEY)) {
         console.log('accessed "cash"');
         utilService.saveToStorage(NOTES_KEY, gNotes)
     }
-    return storageService.query(NOTES_KEY);
+    return storageService.queryNotes(NOTES_KEY)
 }
 
 function remove(noteId) {
@@ -103,11 +105,7 @@ function remove(noteId) {
 }
 
 function save(note) {
-    if (note.id) {
-        return storageService.put(NOTES_KEY, note);
-    } else {
-        return storageService.post(NOTES_KEY, note);
-    }
+    return storageService.post(NOTES_KEY, note);
 }
 
 function getById(notesId) {
