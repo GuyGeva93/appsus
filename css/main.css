@@ -21,7 +21,7 @@
 
 a {
     text-decoration: none;
-    color: #2e2e2e;
+    color: white;
     cursor: pointer;
 }
 
@@ -33,21 +33,24 @@ a:visited {
     color: #2e2e2e;
 }
 
-body .dark {
+
+/* body .dark {
     background-color: #3e3e3e;
     color: whitesmoke;
-}
+} */
 
 body {
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: whitesmoke;
-    color: #2e2e2e;
+    background-color: #3e3e3e;
+    color: whitesmoke;
     margin: 0;
-    font-family: Mate-SC, sans-serif;
+    /* font-family: Mate-SC, sans-serif; */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 1.1rem;
 }
+
 
 /* darkmode button */
 
@@ -59,7 +62,8 @@ ul.tg.list {
     box-sizing: unset;
 }
 
-.app-header ul, .app-header li {
+.app-header ul,
+.app-header li {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -70,11 +74,23 @@ ul.tg.list {
     display: none;
 }
 
-.tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl+.tgl-btn {
+.tgl,
+.tgl:after,
+.tgl:before,
+.tgl *,
+.tgl *:after,
+.tgl *:before,
+.tgl+.tgl-btn {
     box-sizing: border-box;
 }
 
-.tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl+.tgl-btn::selection {
+.tgl::selection,
+.tgl:after::selection,
+.tgl:before::selection,
+.tgl *::selection,
+.tgl *:after::selection,
+.tgl *:before::selection,
+.tgl+.tgl-btn::selection {
     background: none;
 }
 
@@ -88,7 +104,8 @@ ul.tg.list {
     user-select: none;
 }
 
-.tgl+.tgl-btn:after, .tgl+.tgl-btn:before {
+.tgl+.tgl-btn:after,
+.tgl+.tgl-btn:before {
     position: relative;
     display: block;
     content: "";
@@ -125,6 +142,7 @@ ul.tg.list {
     background: #1e201f;
 }
 
+
 /* ====================== */
 
 button {
@@ -153,6 +171,8 @@ html {
 .logo {
     margin-left: 10px;
     align-self: center;
+    font-family: Mate-SC;
+    color: #2e2e2e;
 }
 
 .main-nav {
@@ -208,4 +228,9 @@ html {
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+.fa-envelope,
+.fa-envelope-open {
+    color: #3e3e3e;
 }

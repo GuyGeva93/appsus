@@ -2,10 +2,6 @@
     padding: 10px;
 }
 
-.btn-add-note {
-    margin-bottom: 5px;
-}
-
 .keep-icons {
     height: 40px;
 }
@@ -20,7 +16,7 @@
 }
 
 .notes-form {
-    background-color: thistle;
+    background-color: #5e5e5e;
     padding: 5px;
     display: flex;
     flex-direction: column;
@@ -31,7 +27,11 @@
 }
 
 .btn-add-note {
+    margin-bottom: 5px;
     width: 70px;
+    background-color: #4e4e4e;
+    color: whitesmoke;
+    cursor: pointer;
 }
 
 .note-txt input {
@@ -46,7 +46,7 @@
 }
 
 .type-buttons {
-    background-color: thistle;
+    background-color: #5e5e5e;
     padding: 10px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;

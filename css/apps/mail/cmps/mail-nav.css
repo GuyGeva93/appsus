@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     font-weight: bold;
+    font-family: Mate-SC;
 }
 
 .mail-nav a {
@@ -10,10 +11,11 @@
     width: 200px;
     height: 60px;
     margin: 0;
+    color: #fff !important;
 }
 
 .mail-nav a:hover {
-    background-color: rgb(219, 215, 215);
+    background-color: rgb(131, 130, 130);
 }
 
 .mail-nav a:first-child:hover {
@@ -31,9 +33,14 @@
     gap: 15px;
     border: grey 0.1px solid;
     border-radius: 3em;
+    color: white;
 }
 
 .link-compose:hover {
-    background-color: rgb(219, 215, 215);
+    background-color: rgb(131, 130, 130);
     cursor: pointer;
+}
+
+.mail-nav .router-link-exact-active {
+    background-color: rgb(117, 115, 115);
 }
