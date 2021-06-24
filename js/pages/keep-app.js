@@ -4,13 +4,16 @@ import noteTxt from "../apps/keep/cmps/note-txt.js";
 import noteList from "../apps/keep/pages/note-list.js";
 import noteTodos from "../apps/keep/cmps/note-todos.js";
 import noteImg from "../apps/keep/cmps/note-img.js";
+import { eventBus } from "../services/event-bus-service.js";
+import userMsg from "../cmps/user-msg.js";
 
 export default {
     components: {
         noteTxt,
         noteList,
         noteImg,
-        noteTodos
+        noteTodos,
+        userMsg
     },
     template: `
     <section class="keep-app">
@@ -20,13 +23,13 @@ export default {
             <button value="note-todos" @click="selectNoteType" class="select-todos">TODOS</button>
         </div>
         <form class="notes-form" @submit.prevent="selectNoteType" autocomplete="off">
-            <component :is="selectedType" :info="cmps" @setNote="setNote"/>
+            <component :is="selectedType" :info="cmps" @setNote="setNote"></component>
             <!-- <note-video :info="cmps.txt" @setTxt="setTxt"/>
             <note-audio :info="cmps.txt" @setTxt="setTxt"/>
             <note-map/> -->
             <input type="submit" class="btn-add-note" value="Add Note" @click="addNote"/>
         </form>
-        <note-list v-if="cmps" :notes="cmps"/>
+        <note-list @removeNote="removeNote" v-if="cmps" :notes="cmps"/>
     </section>
     `,
     data() {
@@ -41,7 +44,8 @@ export default {
     computed: {
         notes() {
             return this.cmps
-        }
+        },
+
     },
     methods: {
         loadNotes() {
@@ -53,11 +57,12 @@ export default {
             if (ev.target.value) {
                 this.selectedType = ev.target.value;
             }
-            const type = keepService.getNoteTypeFormat(this.selectedType)
-            this.userNote = type
+            // const type = keepService.getNoteTypeFormat(this.selectedType)
+            // this.userNote = type
         },
         addNote() {
-            // console.log('add note button was pressed');
+            this.userNote = keepService.getNoteTypeFormat(this.selectedType)
+                // console.log('add note button was pressed');
             if (this.selectedType === 'note-txt') {
                 this.userNote.info.txt = this.noteDetails.txt
                 this.userNote.info.title = this.noteDetails.title
@@ -75,6 +80,26 @@ export default {
         setNote(note) {
             this.noteDetails = note
         },
+        removeNote(noteId) {
+            console.log('remove note (keepApp)', noteId);
+            keepService.remove(noteId).then(() => {
+                    const msg = {
+                        txt: 'Note Removed successfuly',
+                        type: 'success'
+                    };
+                    eventBus.$emit('show-msg', msg);
+                    this.loadNotes();
+                })
+                .catch(err => {
+                    console.log(err);
+                    const msg = {
+                        txt: 'Error, please try again',
+                        type: 'error'
+                    };
+                    eventBus.$emit('show-msg', msg);
+
+                });
+        }
 
     },
     created() {

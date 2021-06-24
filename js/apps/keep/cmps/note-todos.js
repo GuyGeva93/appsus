@@ -3,8 +3,8 @@ export default {
     template: `
     <div class="note-todos">
     <label> Add Your Note
-        <input v-model="todos.label" name="todos-note" id="" placeholder="insert text Here..." @blur="returnTxt"/>
-        <input v-model="todos.todos" name="todos-note" id="" placeholder="insert text Here..." @blur="returnTxt"/>
+        <input v-model="todos.label" name="todos-note" id="" placeholder="insert text Here..." @blur="returnTxt" />
+        <input v-model="todos.todos" name="todos-note" id="" placeholder="insert text Here..." @blur="returnTxt" />
     </label>
     </div>
     `,

@@ -6,6 +6,8 @@
 @import '../css/apps/mail/cmps/mail-compose.css';
 @import '../css/cmps/keep-app.css';
 @import '../css/cmps/note-list.css';
+@import '../css/cmps/user-msg.css';
+
 /* TODO:add dark mode */
 
 * {
@@ -29,7 +31,10 @@ button {
     cursor: pointer;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     margin: 0;
 }
 
@@ -79,6 +84,7 @@ html {
     align-self: center;
     margin-left: 10px;
 }
+
 
 /* HELPERS */
 

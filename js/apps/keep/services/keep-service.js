@@ -93,11 +93,16 @@ function getNoteTypeFormat(type) {
 
 function query() {
     // console.log(utilService.loadFromStorage(NOTES_KEY));
-    if (!utilService.loadFromStorage(NOTES_KEY)) {
-        console.log('accessed "cash"');
-        utilService.saveToStorage(NOTES_KEY, gNotes)
-    }
-    return storageService.queryNotes(NOTES_KEY)
+
+    return storageService.queryNotes(NOTES_KEY).then(res => {
+        if (!res.length || !res) {
+            console.log('accessed "cash"');
+            storageService.postMany(NOTES_KEY, gNotes)
+            return gNotes
+        } else {
+            return res
+        }
+    })
 }
 
 function remove(noteId) {
