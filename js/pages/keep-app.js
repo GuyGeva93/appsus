@@ -1,4 +1,5 @@
 import { keepService } from "../apps/keep/services/keep-service.js";
+// import { storageService } from "../services/async-storage-service.js";
 import noteTxt from "../apps/keep/cmps/note-txt.js";
 import noteList from "../apps/keep/pages/note-list.js";
 import noteTodos from "../apps/keep/cmps/note-todos.js";
@@ -19,11 +20,11 @@ export default {
             <button value="note-todos" @click="selectNoteType" class="select-todos">TODOS</button>
         </div>
         <form class="notes-form" @submit.prevent="selectNoteType" autocomplete="off">
-            <component :is="selectedType" :info="cmps" @setTxt="setTxt"/>
+            <component :is="selectedType" :info="cmps" @setNote="setNote"/>
             <!-- <note-video :info="cmps.txt" @setTxt="setTxt"/>
             <note-audio :info="cmps.txt" @setTxt="setTxt"/>
             <note-map/> -->
-            <button class="btn-add-note">Add Note</button>
+            <input type="submit" class="btn-add-note" value="Add Note" @click="addNote"/>
         </form>
         <note-list v-if="cmps" :notes="cmps"/>
     </section>
@@ -33,7 +34,8 @@ export default {
             cmps: null,
             selectedType: 'note-txt',
             //types: 'note-txt', 'note-img','note-todos'
-            userNote: null
+            userNote: null,
+            noteDetails: {}
         }
     },
     computed: {
@@ -42,32 +44,41 @@ export default {
         }
     },
     methods: {
+        loadNotes() {
+            keepService.query().then(res => {
+                this.cmps = res
+            })
+        },
         selectNoteType(ev) {
             if (ev.target.value) {
                 this.selectedType = ev.target.value;
             }
-            console.log('Note Added:');
-            // this.cmps.then(res => console.log(res))
             const type = keepService.getNoteTypeFormat(this.selectedType)
             this.userNote = type
-                // this.addNote(this.userNote)
         },
         addNote() {
+            // console.log('add note button was pressed');
+            if (this.selectedType === 'note-txt') {
+                this.userNote.info.txt = this.noteDetails.txt
+                this.userNote.info.title = this.noteDetails.title
+                console.log(this.userNote);
+                keepService.save(this.userNote).then(() => this.loadNotes())
+            } else if (this.selectedType === 'note-img') {
+                console.log('image', this.noteDetails);
+                this.loadNotes()
+            } else if (this.selectedType === 'note-todos') {
+                console.log('todos', this.noteDetails);
+                this.loadNotes()
+            }
 
         },
-        setTxt(txt) {
-            console.log('txt is...', txt);
-            this.txtNote.info.txt = txt;
-            console.log(this.txtNote.info.txt);
+        setNote(note) {
+            this.noteDetails = note
+        },
 
-        }
     },
     created() {
-        // this.cmps = keepService.getById()
-        this.cmps = keepService.query()
-            //    .then(res => {
-            //             console.log(res);
-            //         })
-            // this.cmp = keepService.getById()
+        this.loadNotes()
+
     },
 }

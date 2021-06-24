@@ -3,14 +3,14 @@ export default {
 
     template: `
     <div class="note-preview">
-      <div class="note txt" v-if="note.type === 'NoteTxt'" >
+      <div class="note txt" v-if="note.type === 'note-txt'" >
         {{note.info.txt}}
         </div>
-        <div class="note img" v-else-if="note.type === 'NoteImg'" >
+        <div class="note img" v-else-if="note.type === 'note-img'" >
         {{note.info.title}}
         <img :src="note.info.url" >
           </div>
-          <div class="note todos" v-else-if="note.type === 'NoteTodos'" >
+          <div class="note todos" v-else-if="note.type === 'note-todos'" >
           <!-- {{note.info.label}} -->
           <!-- {{note}} -->
           label: {{note.info.label}}
@@ -20,6 +20,7 @@ export default {
             <p>created At: {{todo.doneAt}}</p>
           </div>
             </div>
+          <div v-else> other text</div>
       </div>
     `,
     data() {

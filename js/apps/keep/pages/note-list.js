@@ -7,7 +7,7 @@ export default {
     props: ['notes'],
     template: `
     <section class="note-list">
-        <article v-for="note in savedNotes" :key="note.id">
+        <article v-for="note in notes" :key="note.id">
             <note-preview :note="note"/>
         </article>
     </section>
@@ -16,11 +16,5 @@ export default {
         return {
             savedNotes: ''
         }
-    },
-    computed: {
-        //
-    },
-    created() {
-        this.notes.then(res => this.savedNotes = res);
     },
 }

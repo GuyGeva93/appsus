@@ -3,18 +3,24 @@ export default {
     template: `
     <div class="note-img">
     <label> Add Your Note
-        <input v-model="txt" name="text-note" id="" placeholder="insert your url Here..." @submit="returnTxt"/>
+        <input v-model="img.title" name="img-note" id="" placeholder="insert your title Here..." @blur="returnImg"/>
+        <input type="url" v-model="img.url" name="img-note" id="" placeholder="insert your url Here..." @blur="returnImg"/>
     </label>
     </div>
     `,
     data() {
         return {
-            txt: ''
+            img: {
+                url: '',
+                style: '',
+                title: ''
+            }
+
         }
     },
     methods: {
-        returnTxt() {
-            this.$emit('setTxt', this.txt)
+        returnImg() {
+            this.$emit('setNote', this.img)
         }
     },
     created() {},
