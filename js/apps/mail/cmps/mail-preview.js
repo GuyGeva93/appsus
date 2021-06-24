@@ -8,6 +8,7 @@ export default {
         <span>{{mail.from}}</span>
         <span>{{mail.subject}}</span>
         <span>{{mail.sentAt}}</span>
+        <section>sdlkfjsdlkfjksd;</section>
       </section>
       <button @click.stop="remove(mail.id)">Remove</button>
     </section>

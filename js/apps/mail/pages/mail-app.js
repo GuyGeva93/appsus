@@ -16,8 +16,8 @@ export default {
         <router-link @click.native="mailsToShow($route.path); setFilter($route.path)" to="/mail">Inbox {{countMails}}</router-link>
         <router-link @click.native="mailsToShow($route.path); setFilter($route.path)" to="/sent">Sent</router-link>
         <router-link @click.native="mailsToShow($route.path) ; setFilter($route.path)" to="/draft">Draft</router-link>
-     </nav>
-       <router-view></router-view>
+        </nav>
+        <router-view></router-view>
         <mail-list :mails="mails" @removeMail="removeMail"/>
      </section>
     </section>
