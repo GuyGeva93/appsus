@@ -12,7 +12,6 @@ export default {
         };
     },
     created() {
-        console.log('user msg created');
         eventBus.$on('show-msg', this.showMsg);
     },
     destroyed() {

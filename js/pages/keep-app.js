@@ -49,7 +49,6 @@ export default {
         return {
             cmps: null,
             selectedType: 'note-txt',
-            //types: 'note-txt', 'note-img','note-todos'
             userNote: null,
             noteDetails: {},
             isActive: ''
@@ -71,7 +70,6 @@ export default {
         },
         addNote() {
             this.userNote = keepService.getNoteTypeFormat(this.selectedType)
-                // console.log('add note button was pressed');
             if (this.selectedType === 'note-txt') {
                 this.userNote.info.txt = this.noteDetails.txt
                 this.userNote.info.title = this.noteDetails.title

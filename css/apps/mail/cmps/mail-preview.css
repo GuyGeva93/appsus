@@ -5,7 +5,6 @@
     align-items: center;
 }
 
-
 /* .mail-preview-container {
     display: flex;
     gap: 200px;
@@ -52,13 +51,13 @@ tr:hover {
     background-color: #8e889b;
 }
 
-.btn-icon-trash {
+.btn-remove-mail {
     background-color: transparent;
     border: none;
     outline: none;
 }
 
-.btn-icon-trash:hover {
+.btn-remove-mail:hover {
     animation: shake 0.4s linear 1;
 }
 
