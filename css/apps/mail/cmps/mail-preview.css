@@ -1,20 +1,70 @@
 .mail-preview {
-  display: flex;
-  justify-content: space-evenly;
-  height: 40px;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    align-items: center;
 }
 
-.mail-preview-container {
-  display: flex;
-  gap: 200px;
-  /* border: 1px solid; */
-}
+
+/* .mail-preview-container {
+    display: flex;
+    gap: 200px;
+    border: 1px solid;
+    flex-grow: 2;
+} */
 
 .read {
-  background-color: #cccfcf;
+    background-color: #cccfcf;
 }
 
 .unread {
-  font-weight: bold;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border: gold 1px solid;
+    background-color: rgb(219, 217, 217);
+}
+
+tr.mail-preview-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+}
+
+.mail-preview {
+    border-bottom: gold 1px solid;
+}
+
+.mail-preview:hover {
+    background-color: rgba(194, 224, 235, 0.294);
+    cursor: pointer;
+}
+
+td {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 1fr);
+}
+
+.btn-icon-trash {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.btn-icon-trash:hover {
+    animation: shake 0.4s linear 1;
+}
+
+@keyframes shake {
+    25% {
+        transform: rotate(20deg);
+    }
+    50% {
+        transform: rotate(-20deg);
+    }
+    75% {
+        transform: rotate(20deg);
+    }
 }

@@ -1,15 +1,37 @@
 .mail-app {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding: 50px 50px
 }
 
 .mail-app-header {
-  display: flex;
-  gap: 20px;
+    display: flex;
+    gap: 20px;
+    padding: 5px;
+    border-bottom: grey 1px solid;
+}
+
+.mail-app-header input {
+    background-color: rgb(224, 223, 223);
+    width: 300px;
 }
 
 .mail-app-container {
-  display: flex;
-  gap: 30px;
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+.mail-app:after {
+    content: "";
+    display: block;
+    border: 1px solid rgb(49, 49, 246);
+}
+
+.mail-app:before {
+    content: "";
+    display: block;
+    border: 1px solid rgb(49, 49, 246);
 }

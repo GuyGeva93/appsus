@@ -4,11 +4,15 @@ export default {
   props: ['mails'],
 
   template: `
-  <ul class="mail-list clean-list">
-    <li v-for="mail in mails" :key="mail.id" >
-      <mail-preview :mail="mail" @removeMail="removeMail" @click.native="expandMail(mail.id)"/>
-    </li>
-  </ul>  
+    
+
+  <table class="mail-list clean-list">
+    <tbody>
+      <tr v-for="mail in mails" :key="mail.id" >
+          <mail-preview :mail="mail" @removeMail="removeMail" @click.native="expandMail(mail.id)"/>
+      </tr>
+</tbody>
+    </table>
   `,
 
   methods: {
