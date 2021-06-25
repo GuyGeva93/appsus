@@ -3,9 +3,15 @@
     flex-direction: column;
     justify-content: space-around;
     margin: 5px;
-    height: 86vh;
+    min-height: 87.5vh;
 }
 
 .img-homepage-1 {
     object-fit: contain;
+    max-height: 270px;
+}
+
+.home-page p {
+    padding: 0;
+    margin: 0;
 }

@@ -31,11 +31,12 @@ tr.mail-preview-container {
 }
 
 .mail-preview {
-    border-bottom: gold 1px solid;
+    border-bottom: black 1px solid;
 }
 
 .mail-preview:hover {
-    /* background-color: rgba(194, 224, 235, 0.294); */
+    background-color: rgba(194, 224, 235, 0.294);
+    box-shadow: #4e4e4e 1px 1px 2px;
     cursor: pointer;
 }
 
@@ -45,9 +46,10 @@ td {
     color: #2e2e2e;
 }
 
-tr:hover {
+
+/* tr:hover {
     background-color: #8e889b;
-}
+} */
 
 .fa-trash-alt:hover {
     animation: shake 0.4s linear 1;
