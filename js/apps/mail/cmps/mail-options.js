@@ -1,28 +1,29 @@
+import { eventBus } from "../../../services/event-bus-service.js"
 
 export default {
   props: ['mail'],
 
   template: `
   <section class="mail-preview-icons">
-    <i v-if="!mail.isRead" class="fa fa-envelope" @click.stop="mailRead" aria-hidden="true" />
-    <i v-else class="fa fa-envelope-open" @click.stop="mailRead" aria-hidden="true" />
-    <i v-if="!mail.isStar" class="far fa-star" @click.stop="mailStarred"/>
-    <i v-else class="fas fa-star" @click.stop="mailStarred"/>
-    <i class="fas fa-trash-alt" @click.stop="mailRemove(mail.id)"/>
+    <i v-if="!mail.isRead" class="fa fa-envelope" @click.stop="readMail" aria-hidden="true" />
+    <i v-else class="fa fa-envelope-open" @click.stop="readMail" aria-hidden="true" />
+    <i v-if="!mail.isStar" class="far fa-star" @click.stop="starMail"/>
+    <i v-else class="fas fa-star" @click.stop="starMail"/>
+    <i class="fas fa-trash-alt" @click.stop="removeMail(mail.id)"/>
   </section>
   `,
 
   methods: {
-    mailRead() {
+    readMail() {
       this.mail.isRead = !this.mail.isRead
-      this.$emit('mailRead', this.mail)
+      eventBus.$emit('readMail', this.mail)
     },
-    mailStarred() {
+    starMail() {
       this.mail.isStar = !this.mail.isStar
-      this.$emit('mailStarred', this.mail)
+      eventBus.$emit('starMail', this.mail)
     },
-    mailRemove(mailId) {
-      this.$emit('mailRemove', mailId)
+    removeMail(mailId) {
+      eventBus.$emit('removeMail', mailId)
     }
   },
 }
