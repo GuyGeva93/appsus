@@ -1,5 +1,6 @@
 import { mailService } from '../services/mail-service.js'
 import mailList from '../cmps/mail-list.js'
+import { eventBus } from '../../../services/event-bus-service.js'
 
 
 export default {
@@ -18,8 +19,7 @@ export default {
         <router-link @click.native="mailsToShow($route.path)" to="/draft">Draft</router-link>
         <router-link @click.native="mailsToShow($route.path)" to="/star">Star</router-link>
      </nav>
-        <mail-list :mails="filterMails" @mailRemove="mailRemove" @mailStarred="mailStarred"
-        @mailRead="mailRead"/>
+        <mail-list :mails="filterMails" />
      </section>
     </section>
   `,
@@ -46,17 +46,14 @@ export default {
           this.mailsToShow()
         })
     },
-    mailRemove(mailId) {
+    removeMail(mailId) {
       mailService.remove(mailId)
         .then(() => {
           // eventBus.$emit('show-msg', msg);
           this.loadMails()
         })
     },
-    mailStarred(mail) {
-      mailService.put(mail)
-    },
-    mailRead(mail) {
+    updateMail(mail) {
       mailService.put(mail)
     },
     setFilter(route) {
@@ -97,12 +94,25 @@ export default {
   computed: {
     countMails() {
       const mailsCount = this.mails.filter(mail => {
-        if (!mail.isRead) return mail
+        if (mail.isRead) return mail
       })
-      if (!mailsCount.length) return ''
-      return `(${mailsCount.length})`
+      if (mailsCount.length === this.mails.length) return ''
+      return `${parseInt(mailsCount.length / this.mails.length * 100)}%`
+
     },
 
+  },
+
+  mounted() {
+    eventBus.$on('starMail', this.updateMail);
+    eventBus.$on('readMail', this.updateMail);
+    eventBus.$on('removeMail', this.removeMail);
+  },
+
+  destroyed() {
+    eventBus.$off('mailStarred');
+    eventBus.$off('readMail');
+    eventBus.$off('removeMail');
   },
 
   components: {

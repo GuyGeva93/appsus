@@ -5,10 +5,9 @@ export default {
   props: ['mails'],
 
   template: `
-  <table class="mail-list">
+  <table class="mail-list" >
     <tbody>
-      <mail-preview v-for="mail in mails" :key="mail.id" :mail="mail" @mailRemove="mailRemove"
-      @mailStarred="mailStarred" @mailRead="mailRead" @click="mailExpand"/>
+      <mail-preview v-for="mail in mails" :key="mail.id" :mail="mail" @click="mailExpand"/>
     </tbody>
   </table>
   `,
@@ -21,17 +20,7 @@ export default {
   },
 
   methods: {
-    mailRemove(mailId) {
-      this.$emit('mailRemove', mailId)
-    },
-    mailStarred(mail) {
-      this.$emit('mailStarred', mail)
-    },
-    mailRead(mail) {
-      this.$emit('mailRead', mail)
-    },
     mailExpand() {
-      this.currMailId = this.mail.id
       this.isExpand = !this.isExpand
       this.mail.isRead = true
     }

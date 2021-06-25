@@ -34,6 +34,11 @@
     border-radius: 3em;
 }
 
+.mail-compose-btns {
+    display: flex;
+    justify-content: space-between;
+}
+
 .send {
     font-size: 30px;
     border: none;

@@ -7,9 +7,11 @@ export default {
       <input type="text" v-model="newMail.from" placeholder="From">
       <input type="text" v-model="newMail.subject" placeholder="Subject">
       <textarea v-model="newMail.body" id="" cols="30" rows="10"></textarea>
-      <button :class="{send: isSent}"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+      <nav style="mail-compose-btns">
+        <button class="mail-compose-btn-draft" @click.stop="addDraft">Draft</button>
+        <button :class="{send: isSent}"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>     
+      </nav>
   </form>
-      <button @click.stop="addDraft">Save as draft</button>
   </section>
   `,
 

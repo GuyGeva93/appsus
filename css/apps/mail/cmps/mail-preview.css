@@ -11,11 +11,11 @@
 }
 
 .read {
-    background-color: #cccfcf;
+    background-color: #b3b8b8;
 }
 
 .unread {
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 table {

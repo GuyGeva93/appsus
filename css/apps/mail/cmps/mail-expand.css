@@ -1,7 +1,6 @@
-.expand {
-  background-color: green;
+.mail-expand {
+  background-color: whitesmoke;
+  color: black;
   display: flex;
   flex-direction: column;
-  position: absolute;
-  width: 790px;
 }
