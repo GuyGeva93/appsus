@@ -4,6 +4,7 @@ import notePreviewTxt from "./note-preview-txt.js";
 import notePreviewImg from "./note-preview-img.js";
 import notePreviewTodos from "./note-preview-todos.js";
 import notePreviewVid from "./note-preview-vid.js";
+import { eventBus } from "../../../services/event-bus-service.js";
 
 export default {
     components: {
@@ -17,18 +18,16 @@ export default {
     template: `
     <div class="note-preview">
       <component 
-      :class="selectedColor"
       :is="notePreviewType" 
       :note="note"
       @removeNote="removeNote"
-      @selectColor="selectColor"
       ></component>
       </div>
     `,
     data() {
         return {
             todo: '',
-            selectedColor: 'teal'
+            // selectedColor: ''
         }
     },
     computed: {
@@ -47,12 +46,13 @@ export default {
             console.log('removing note(note preview)', noteId);
             this.$emit('removeNote', noteId)
         },
-        selectColor(color) {
-            console.log(color);
-            this.selectedColor = color;
-            this.note.style.backgroundColor = color
-            keepService.update(this.note)
+        toggleColors(color) {
+            console.log(this.note);
+            return
         }
+    },
+    mounted() {
+        eventBus.$on('selectColor', this.toggleColors);
     },
 
 }

@@ -1,5 +1,6 @@
 import colorPalette from "./color-palette.js"
 import { eventBus } from "../../../services/event-bus-service.js"
+import { keepService } from "../services/keep-service.js"
 export default {
     components: {
         colorPalette,
@@ -15,7 +16,7 @@ export default {
         <div class="note-btns">
     <button @click="removeNote" class="remove">X</button>
     <button @click="isPaletteOpen = !isPaletteOpen" class="colors"><i class="fa-solid fa-palette"></i></button>
-    <color-palette v-if="isPaletteOpen"  @selectColor="selectColor"/>
+    <color-palette v-if="isPaletteOpen"  @selectColor="selectColor" :note="note"/>
         </div>
     </div>
     `,
@@ -45,7 +46,11 @@ export default {
         },
         selectColor(color) {
             this.backgroundColor = color
+                // console.log(this.note);
+            this.note.style.backgroundColor = color
+            keepService.update(this.note)
                 // eventBus.$emit('selectColor', color)
+
             this.$emit('selectColor', color)
         }
     },

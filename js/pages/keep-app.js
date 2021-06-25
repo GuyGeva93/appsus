@@ -140,7 +140,8 @@ export default {
                 });
         },
         toggleColors(color) {
-            return this.currBackgroundColor = color
+            console.log(this.noteDetails);
+            // return this.userNote.style.backgroundColor = color
         }
 
     },

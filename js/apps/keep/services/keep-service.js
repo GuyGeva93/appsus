@@ -17,7 +17,7 @@ const gNotes = [{
             txt: "Fullstack Me Baby!"
         },
         style: {
-            backgroundColor: 'teal'
+            backgroundColor: _createRandColor()
         }
     },
     {
@@ -29,7 +29,7 @@ const gNotes = [{
             title: "Me playing Mi"
         },
         style: {
-            backgroundColor: 'teal'
+            backgroundColor: _createRandColor()
         }
     },
     {
@@ -44,7 +44,7 @@ const gNotes = [{
             ]
         },
         style: {
-            backgroundColor: 'teal'
+            backgroundColor: _createRandColor()
         }
     }
 ];
@@ -62,7 +62,7 @@ function getNoteTypeFormat(type) {
                     txt: ''
                 },
                 style: {
-                    backgroundColor: 'teal'
+                    backgroundColor: _createRandColor()
                 }
             }
             break;
@@ -76,7 +76,7 @@ function getNoteTypeFormat(type) {
                     title: ""
                 },
                 style: {
-                    backgroundColor: 'teal'
+                    backgroundColor: _createRandColor()
                 }
             };
             break;
@@ -90,7 +90,7 @@ function getNoteTypeFormat(type) {
                     todos: []
                 },
                 style: {
-                    backgroundColor: 'teal'
+                    backgroundColor: _createRandColor()
                 }
             }
             break;
@@ -104,7 +104,7 @@ function getNoteTypeFormat(type) {
                     url: "",
                 },
                 style: {
-                    backgroundColor: 'teal'
+                    backgroundColor: _createRandColor()
                 }
             }
             break;
@@ -147,7 +147,8 @@ function getById(notesId) {
     return storageService.get(NOTES_KEY, notesId);
 }
 
-// function '_createRandColor' () {
-//     const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-//     return randomColor
-// }
+function _createRandColor() {
+    const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    console.log(randomColor);
+    return randomColor
+}

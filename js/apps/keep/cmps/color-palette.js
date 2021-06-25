@@ -1,4 +1,6 @@
+import { eventBus } from "../../../services/event-bus-service.js"
 export default {
+    props: ['note'],
     template: `
     <div class="color-palette">
         <button @click="selectColor"><img id="orange" class="color"src="../img/colors/orange.png"></button>
@@ -21,7 +23,12 @@ export default {
         selectColor(ev) {
             this.selectedColor = ev.target.id
             this.$emit('selectColor', this.selectedColor)
+            console.log(this.selectedColor);
+            eventBus.$emit('selectColor', this.selectedColor)
         }
+    },
+    created() {
+        console.log(this.note);
     },
 
 }
