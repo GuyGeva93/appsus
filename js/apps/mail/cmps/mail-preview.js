@@ -1,4 +1,5 @@
 import mailExpand from "./mail-expand.js"
+import mailOptions from "./mail-options.js"
 
 export default {
   props: ['mail'],
@@ -9,26 +10,28 @@ export default {
         <td>{{mail.from}}</td>
         <td>{{mail.subject}}</td>
         <td>{{mail.sentAt}}</td>
-        <mail-expand :mail="mail" v-if="isExpand" />
       </tr>
-      <i v-if="mail.isRead" class="fa fa-envelope" @click.stop="mailRead" aria-hidden="true"></i>
-      <i v-else class="fa fa-envelope-open" @click.stop="mailRead" aria-hidden="true"></i>
-      <button class="btn-remove-mail" @click.stop="remove(mail.id)"><img  src="../img/trash-icon.png"></button>
+      <mail-expand :mail="mail" v-if="isExpand"/>
+      <mail-options @mailStarred="mailStarred" @mailRemove="mailRemove"  @mailRead="mailRead" :mail="mail"/>
     </section>
   `,
 
   data() {
     return {
       isExpand: false,
+      isStar: false,
     }
   },
 
   methods: {
-    remove(mailId) {
-      this.$emit('removeMail', mailId)
+    mailRemove(mailId) {
+      this.$emit('mailRemove', mailId)
     },
-    mailRead() {
-      this.mail.isRead = !this.mail.isRead
+    mailRead(mail) {
+      this.$emit('mailRead', mail)
+    },
+    mailStarred(mail) {
+      this.$emit('mailStarred', mail)
     },
     mailExpand() {
       this.isExpand = !this.isExpand
@@ -41,6 +44,7 @@ export default {
     }
   },
   components: {
-    mailExpand
+    mailExpand,
+    mailOptions
   }
 }

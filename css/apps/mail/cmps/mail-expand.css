@@ -1,0 +1,7 @@
+.expand {
+  background-color: green;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 790px;
+}

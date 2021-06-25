@@ -4,7 +4,8 @@ import { storageService } from '../../../services/async-storage-service.js'
 export const mailService = {
   query,
   post,
-  remove
+  remove,
+  put
 }
 
 const MAIL_KEY = 'mails'
@@ -31,8 +32,11 @@ function post(newMail) {
 
 function remove(mailId) {
   return storageService.remove(MAIL_KEY, mailId)
-    .then(console.log('REMOVE ok'))
     .catch(err => console.log(err))
+}
+
+function put(mail) {
+  storageService.put(MAIL_KEY, mail)
 }
 
 
@@ -44,7 +48,8 @@ const gMails = [{
   isRead: false,
   sentAt: '12:18',
   isSent: false,
-  isDraft: false
+  isDraft: false,
+  isStar: false
 },
 {
   id: storageService._makeId(),
@@ -54,7 +59,9 @@ const gMails = [{
   isRead: true,
   sentAt: '12:20',
   isSent: false,
-  isDraft: false
+  isDraft: false,
+  isStar: false
+
 },
 {
   id: storageService._makeId(),
@@ -64,7 +71,9 @@ const gMails = [{
   isRead: false,
   sentAt: '12:35',
   isSent: false,
-  isDraft: false
+  isDraft: false,
+  isStar: false
+
 },
 {
   id: storageService._makeId(),
@@ -74,6 +83,8 @@ const gMails = [{
   isRead: false,
   sentAt: '12:35',
   isSent: false,
-  isDraft: false
+  isDraft: false,
+  isStar: false
+
 }
 ]

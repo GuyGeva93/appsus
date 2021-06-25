@@ -7,42 +7,46 @@ import mailCompose from './apps/mail/cmps/mail-compose.js'
 
 
 const routes = [{
-        path: '/',
-        component: homePage
-    },
-    {
+    path: '/',
+    component: homePage
+},
+{
+    path: '/mail',
+    component: mailApp,
+    children: [{
         path: '/mail',
-        component: mailApp,
-        children: [{
-                path: '/mail',
-                component: mailList
-            },
-            {
-                path: '/sent',
-                component: mailList
-            },
-            {
-                path: '/draft',
-                component: mailList
-            }
-        ]
-    },
-    {
-        path: '/mail-preview',
-        component: mailPreview
-    },
-    {
-        path: '/mail-list',
         component: mailList
     },
     {
-        path: '/mail-compose',
-        component: mailCompose
+        path: '/sent',
+        component: mailList
     },
     {
-        path: '/keep',
-        component: noteApp
+        path: '/draft',
+        component: mailList
+    },
+    {
+        path: '/star',
+        component: mailList
     }
+    ]
+},
+{
+    path: '/mail-preview',
+    component: mailPreview
+},
+{
+    path: '/mail-list',
+    component: mailList
+},
+{
+    path: '/mail-compose',
+    component: mailCompose
+},
+{
+    path: '/keep',
+    component: noteApp
+}
 ]
 
 export const router = new VueRouter({ routes })

@@ -10,14 +10,16 @@ export default {
         <input type="text" placeholder="Search mail" v-model="searchBy" @input="search">
       </header>
       <section class="mail-app-container">
-        <nav class="mail-nav">
+      <nav class="mail-nav">
         <router-link to="/mail-compose">
         <div class="link-compose"><img class="plus-icon" src="../img/plus-icon.png"> <span> Compose </span></div></router-link>
         <router-link @click.native="mailsToShow($route.path)" to="/mail">Inbox {{countMails}}</router-link>
         <router-link @click.native="mailsToShow($route.path)" to="/sent">Sent</router-link>
         <router-link @click.native="mailsToShow($route.path)" to="/draft">Draft</router-link>
+        <router-link @click.native="mailsToShow($route.path)" to="/star">Star</router-link>
      </nav>
-        <mail-list :mails="filterMails" @removeMail="removeMail"/>
+        <mail-list :mails="filterMails" @mailRemove="mailRemove" @mailStarred="mailStarred"
+        @mailRead="mailRead"/>
      </section>
     </section>
   `,
@@ -44,12 +46,18 @@ export default {
           this.mailsToShow()
         })
     },
-    removeMail(mailId) {
+    mailRemove(mailId) {
       mailService.remove(mailId)
         .then(() => {
           // eventBus.$emit('show-msg', msg);
           this.loadMails()
         })
+    },
+    mailStarred(mail) {
+      mailService.put(mail)
+    },
+    mailRead(mail) {
+      mailService.put(mail)
     },
     setFilter(route) {
       this.filterBy = route
@@ -72,8 +80,11 @@ export default {
           return (mail.isDraft)
         })
         return this.filterMails
+      } else if (this.filterBy === "/star") {
+        this.filterMails = this.mails.filter(mail => {
+          return (mail.isStar)
+        })
       }
-
     },
     search() {
       this.filterMails = this.mails.filter(mail => {

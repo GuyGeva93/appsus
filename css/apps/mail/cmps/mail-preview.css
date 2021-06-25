@@ -5,12 +5,10 @@
     align-items: center;
 }
 
-/* .mail-preview-container {
+.mail-preview-icons {
     display: flex;
-    gap: 200px;
-    border: 1px solid;
-    flex-grow: 2;
-} */
+    gap: 5px;
+}
 
 .read {
     background-color: #cccfcf;
@@ -51,13 +49,7 @@ tr:hover {
     background-color: #8e889b;
 }
 
-.btn-remove-mail {
-    background-color: transparent;
-    border: none;
-    outline: none;
-}
-
-.btn-remove-mail:hover {
+.fa-trash-alt:hover {
     animation: shake 0.4s linear 1;
 }
 
