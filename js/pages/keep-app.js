@@ -63,41 +63,65 @@ export default {
         loadNotes() {
             keepService.query().then(res => {
                 this.cmps = res
+                console.log(this.cmps);
             })
         },
         selectNoteType(ev) {
             this.selectedType = ev.target.id;
         },
         addNote() {
-            this.userNote = keepService.getNoteTypeFormat(this.selectedType)
-            if (this.selectedType === 'note-txt') {
-                this.userNote.info.txt = this.noteDetails.txt
-                this.userNote.info.title = this.noteDetails.title
-                console.log(this.userNote);
-                keepService.save(this.userNote).then(() => this.loadNotes())
+            keepService.getNoteTypeFormat(this.selectedType)
+                .then(res => {
+                    this.userNote = res
+                    console.log(this.userNote);
+                    if (this.selectedType === 'note-txt') {
+                        this.userNote.info.txt = this.noteDetails.txt
+                        this.userNote.info.title = this.noteDetails.title
+                        console.log(this.userNote);
+                        keepService.save(this.userNote).then(() => this.loadNotes())
 
-            } else if (this.selectedType === 'note-img') {
-                console.log('image', this.noteDetails);
-                this.userNote.info.title = this.noteDetails.title
-                this.userNote.info.url = this.noteDetails.url
-                keepService.save(this.userNote).then(() => this.loadNotes())
+                    } else if (this.selectedType === 'note-img') {
+                        console.log('image', this.noteDetails);
+                        this.userNote.info.title = this.noteDetails.title
+                        this.userNote.info.url = this.noteDetails.url
+                        keepService.save(this.userNote).then(() => this.loadNotes())
 
-            } else if (this.selectedType === 'note-todos') {
-                this.userNote.info.label = this.noteDetails.label
-                this.noteDetails.todos.map(todo => {
-                    console.log(todo.txt);
-                    this.userNote.info.todos.push(todo)
+                    } else if (this.selectedType === 'note-todos') {
+                        this.userNote.info.label = this.noteDetails.label
+                        this.noteDetails.todos.map(todo => {
+                            console.log(todo.txt);
+                            this.userNote.info.todos.push(todo)
+                        });
+                        // console.log('todos', this.noteDetails);
+                        keepService.save(this.userNote).then(() => this.loadNotes())
+                    } else if (this.selectedType === 'note-vid') {
+                        console.log('vid');
+                        console.log(this.userNote);
+                        this.userNote.info.label = this.noteDetails.label
+                        console.log(this.userNote.info.label);
+                        if (this.noteDetails.url.includes('youtube')) {
+                            const videoId = this.getYouTubeEmbedUrl(this.noteDetails.url)
+                                // R9Kjatuf-oU
+                            console.log(videoId);
+                            const iframeMarkup = '//www.youtube.com/embed/' +
+                                videoId;
+                            this.userNote.info.url = iframeMarkup
+                        } else {
+
+                            this.userNote.info.url = this.noteDetails.url
+                        }
+                        keepService.save(this.userNote).then(() => this.loadNotes())
+                    }
                 });
-                // console.log('todos', this.noteDetails);
-                keepService.save(this.userNote).then(() => this.loadNotes())
-            } else if (this.selectedType === 'note-vid') {
-                console.log('vid');
-                this.userNote.info.label = this.noteDetails.label
-                this.userNote.info.url = this.noteDetails.url
-                    // console.log('todos', this.noteDetails);
-                keepService.save(this.userNote).then(() => this.loadNotes())
-            }
 
+        },
+        getYouTubeEmbedUrl(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+            const match = url.match(regExp);
+
+            return (match && match[2].length === 11) ?
+                match[2] :
+                null;
         },
         setNote(note) {
             console.log(note);

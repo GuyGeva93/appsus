@@ -10,7 +10,9 @@
 @import '../css/pages/app-header.css';
 @import '../css/pages/app-footer.css';
 @import './cmps/main-nav.css';
+
 /* TODO:add dark mode */
+
 
 /* FONTS */
 
@@ -18,6 +20,7 @@
     font-family: Mate-SC;
     src: url('../fonts/Mate-SC/MateSC-Regular.ttf');
 }
+
 
 /* GENERAL ELEMENTS */
 
@@ -38,6 +41,7 @@ a:hover {
 a:visited {
     color: #2e2e2e;
 }
+
 
 /* body .dark {
     background-color: #3e3e3e;
@@ -60,7 +64,10 @@ button {
     cursor: pointer;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     margin: 0;
 }
 
@@ -68,11 +75,14 @@ html {
     min-height: 100vh;
 }
 
+
 /* ====================== */
+
 
 /* darkmode button */
 
-ul.tg.list {
+
+/* ul.tg.list {
     vertical-align: middle;
 }
 
@@ -80,11 +90,23 @@ ul.tg.list {
     display: none;
 }
 
-.tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl+.tgl-btn {
+.tgl,
+.tgl:after,
+.tgl:before,
+.tgl *,
+.tgl *:after,
+.tgl *:before,
+.tgl+.tgl-btn {
     box-sizing: border-box;
 }
 
-.tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl+.tgl-btn::selection {
+.tgl::selection,
+.tgl:after::selection,
+.tgl:before::selection,
+.tgl *::selection,
+.tgl *:after::selection,
+.tgl *:before::selection,
+.tgl+.tgl-btn::selection {
     background: none;
 }
 
@@ -98,7 +120,8 @@ ul.tg.list {
     user-select: none;
 }
 
-.tgl+.tgl-btn:after, .tgl+.tgl-btn:before {
+.tgl+.tgl-btn:after,
+.tgl+.tgl-btn:before {
     position: relative;
     display: block;
     content: "";
@@ -133,9 +156,11 @@ ul.tg.list {
 
 .tgl-light:checked+.tgl-btn {
     background: #1e201f;
-}
+} */
+
 
 /* ====================== */
+
 
 /* HELPERS */
 
@@ -145,6 +170,7 @@ ul.tg.list {
     padding: 0;
 }
 
-.fa-envelope, .fa-envelope-open {
+.fa-envelope,
+.fa-envelope-open {
     color: #3e3e3e;
 }

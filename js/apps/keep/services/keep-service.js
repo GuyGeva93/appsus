@@ -94,7 +94,10 @@ function getNoteTypeFormat(type) {
             break;
 
     }
-    return cmp
+    return Promise.resolve(cmp).then(res => {
+        console.log(res);
+        return res
+    });
 }
 
 

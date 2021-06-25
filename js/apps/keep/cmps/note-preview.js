@@ -7,7 +7,8 @@ export default {
     <div class="note-preview">
       <div class="note txt" v-if="note.type === 'note-txt'" >
          <div class="note-content">
-        {{note.info.txt}}
+       <u>  {{note.info.title}}:</u>
+       <p> {{note.info.txt}}</p>
       </div>
       <div class="note-btns">
 
@@ -38,7 +39,7 @@ export default {
             </div>
             <div class="note vid" v-else-if="note.type === 'note-vid'" >
           <div class="note-content">
-            <iframe type="url" class="vid-iframe" :src="note.info.url" title="note.info.label" frameborder="0"></iframe>
+            <iframe type="url" class="vid-iframe" :src="note.info.url" :title="note.info.label" frameborder="0" height="300" width="300"></iframe>
           </div>
         <div class="note-btns">
         <button @click="removeNote(note.id)" class="remove">X</button>

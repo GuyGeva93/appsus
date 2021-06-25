@@ -6,7 +6,7 @@ export default {
         <br>
         <input v-model="vid.label" name="vid-note" id="" placeholder="insert your title Here..." @blur="returnVid" />
         <br>
-        <input type="url" v-model="vid.url" name="vid-note" id="" placeholder="insert your videos url Here..." @blur="returnVid" />
+        <input type="url" v-model="vid.url" name="vid-note" id="" placeholder="https://www.someUrl.com/video" @blur="returnVid"/>
     </label>
     </div>
     `,

@@ -7,7 +7,7 @@ export default {
         <input v-model="todos.label" name="todos-note" placeholder="insert text Here..." @blur="returnTxt" />
         <br>
         <input v-model="todos.todos.txt" name="todos-note" placeholder="insert TODO Here..." @blur="returnTxt" />
-        <button @click.stop="addTodo" class="add-todo">Add Todo</button>
+        <button @click.stop.prevent="addTodo" class="add-todo">Add Todo</button>
     </label>
     </div>
     `,
