@@ -20,19 +20,19 @@ export default {
   template: `
     <section class="keep-app">
         <div class="type-buttons">
-            <button  @click="selectNoteType" class=" select-note select-txt" :class="{isActive: this.selectedType === 'note-txt'}">
+            <button id="note-txt"  @click="selectNoteType" class=" select-note select-txt" :class="{isActive: this.selectedType === 'note-txt'}">
                 <img id="note-txt" class="keep-icons" src="../img/txt-icon.png" >
             </button>
 
-            <button @click="selectNoteType" class=" select-note select-img" :class="{isActive: this.selectedType=== 'note-img'}">
+            <button id="note-txt" @click="selectNoteType" class=" select-note select-img" :class="{isActive: this.selectedType=== 'note-img'}">
                 <img id="note-img" class="keep-icons" src="../img/img-icon.png" >
             </button>
 
-            <button @click="selectNoteType" class=" select-note select-todos" :class="{isActive: this.selectedType=== 'note-todos'}">
+            <button id="note-txt" @click="selectNoteType" class=" select-note select-todos" :class="{isActive: this.selectedType=== 'note-todos'}">
                 <img id="note-todos" class="keep-icons" src="../img/todo-icon.png" >
             </button>
 
-            <button @click="selectNoteType" class="select-note select-vid" :class="{isActive: this.selectedType=== 'note-vid'}">
+            <button id="note-txt" @click="selectNoteType" class="select-note select-vid" :class="{isActive: this.selectedType=== 'note-vid'}">
                 <img id="note-vid" class="keep-icons" src="../img/video-icon.png" >
             </button>
 

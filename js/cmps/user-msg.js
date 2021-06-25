@@ -5,10 +5,7 @@ export default {
         <div 
         v-if="msg" 
         class="user-msg" 
-        :class="msg.type"
-        enter-active-class="animate__animated animate__bounceInDown"
-        
-        >
+        :class="msg.type">
             <p>{{msg.txt}}</p>
         </div>
     `,
