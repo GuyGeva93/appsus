@@ -4,16 +4,23 @@
 }
 
 .keep-icons {
-    height: 40px;
+    height: 50px;
+    border-radius: 10px;
 }
 
 .keep-icons:hover {
-    height: 40px;
     background-color: unset;
 }
 
+.select-note {
+    border: none;
+    /* padding: 0; */
+    background-color: transparent;
+    border-radius: 10px;
+}
+
 .select-note:hover {
-    background-color: #e6e1e18a;
+    background-color: gold;
 }
 
 .notes-form {

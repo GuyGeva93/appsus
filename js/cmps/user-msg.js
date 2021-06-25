@@ -7,7 +7,7 @@ export default {
         class="user-msg" 
         :class="msg.type"
         enter-active-class="animate__animated animate__bounceInDown"
-        enter-active-class="animate__animated animate__bounceInDown"
+        leave-active-class="animate__animated animate__bounceInDown"
         
         >
             <p>{{msg.txt}}</p>
