@@ -54,7 +54,8 @@
 
 .note-txt textarea {
     margin: 5px;
-    width: 400px;
+    width: 500px;
+    min-width: 330px;
     height: 100px;
 }
 

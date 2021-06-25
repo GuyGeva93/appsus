@@ -1,4 +1,5 @@
 import { storageService } from "../../../services/async-storage-service.js";
+import { keepService } from "../services/keep-service.js";
 import notePreviewTxt from "./note-preview-txt.js";
 import notePreviewImg from "./note-preview-img.js";
 import notePreviewTodos from "./note-preview-todos.js";
@@ -16,15 +17,18 @@ export default {
     template: `
     <div class="note-preview">
       <component 
+      :class="selectedColor"
       :is="notePreviewType" 
       :note="note"
       @removeNote="removeNote"
+      @selectColor="selectColor"
       ></component>
       </div>
     `,
     data() {
         return {
-            todo: ''
+            todo: '',
+            selectedColor: 'teal'
         }
     },
     computed: {
@@ -43,7 +47,12 @@ export default {
             console.log('removing note(note preview)', noteId);
             this.$emit('removeNote', noteId)
         },
-
+        selectColor(color) {
+            console.log(color);
+            this.selectedColor = color;
+            this.note.style.backgroundColor = color
+            keepService.update(this.note)
+        }
     },
 
 }

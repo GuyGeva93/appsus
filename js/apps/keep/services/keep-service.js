@@ -5,7 +5,8 @@ export const keepService = {
     remove,
     save,
     getById,
-    getNoteTypeFormat
+    getNoteTypeFormat,
+    update
 }
 const NOTES_KEY = 'notes';
 const gNotes = [{
@@ -14,6 +15,9 @@ const gNotes = [{
         isPinned: true,
         info: {
             txt: "Fullstack Me Baby!"
+        },
+        style: {
+            backgroundColor: 'teal'
         }
     },
     {
@@ -25,7 +29,7 @@ const gNotes = [{
             title: "Me playing Mi"
         },
         style: {
-            backgroundColor: _createRandColor()
+            backgroundColor: 'teal'
         }
     },
     {
@@ -38,6 +42,9 @@ const gNotes = [{
                 { txt: "Do that", doneAt: null },
                 { txt: "Do this", doneAt: 187111111 }
             ]
+        },
+        style: {
+            backgroundColor: 'teal'
         }
     }
 ];
@@ -53,6 +60,9 @@ function getNoteTypeFormat(type) {
                 info: {
                     title: '',
                     txt: ''
+                },
+                style: {
+                    backgroundColor: 'teal'
                 }
             }
             break;
@@ -66,7 +76,7 @@ function getNoteTypeFormat(type) {
                     title: ""
                 },
                 style: {
-                    backgroundColor: _createRandColor()
+                    backgroundColor: 'teal'
                 }
             };
             break;
@@ -78,6 +88,9 @@ function getNoteTypeFormat(type) {
                 info: {
                     label: "",
                     todos: []
+                },
+                style: {
+                    backgroundColor: 'teal'
                 }
             }
             break;
@@ -89,6 +102,9 @@ function getNoteTypeFormat(type) {
                 info: {
                     label: "",
                     url: "",
+                },
+                style: {
+                    backgroundColor: 'teal'
                 }
             }
             break;
@@ -123,11 +139,15 @@ function save(note) {
     return storageService.post(NOTES_KEY, note);
 }
 
+function update(note) {
+    return storageService.put(NOTES_KEY, note);
+}
+
 function getById(notesId) {
     return storageService.get(NOTES_KEY, notesId);
 }
 
-function _createRandColor() {
-    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-    return randomColor
-}
+// function '_createRandColor' () {
+//     const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+//     return randomColor
+// }

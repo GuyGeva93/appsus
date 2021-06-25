@@ -1,28 +1,38 @@
+import colorPalette from "./color-palette.js"
+import { eventBus } from "../../../services/event-bus-service.js"
 export default {
+    components: {
+        colorPalette,
+        eventBus
+    },
     props: ['note'],
     template: `
-    <div class="note txt note-preview">
+    <div class="note txt note-preview" :style="{backgroundColor: selectedColor}">
          <div class="note-content">
        <u> {{note.info.title}}:</u>
        <p> {{note.info.txt}}</p>
       </div>
         <div class="note-btns">
-
-        <button @click="removeNote" class="remove">X</button>
+    <button @click="removeNote" class="remove">X</button>
+    <button @click="isPaletteOpen = !isPaletteOpen" class="colors"><i class="fa-solid fa-palette"></i></button>
+    <color-palette v-if="isPaletteOpen"  @selectColor="selectColor"/>
         </div>
     </div>
     `,
     data() {
         return {
             type: 'notePreviewTxt',
-            noteId: ''
+            noteId: '',
+            backgroundColor: '',
+            isPaletteOpen: false
         }
     },
     computed: {
-        // selectedNoteId() {
-        //     return this.noteId = this.note.id
-        // }
+        selectedColor() {
+            return this.backgroundColor
+        }
     },
+
     methods: {
         returnTxt() {
             this.$emit('setNotePreview', this.type)
@@ -30,9 +40,16 @@ export default {
         removeNote() {
             this.$emit('removeNote', this.note.id)
         },
+        openColorPalette() {
+            this.$emit('openColorPalette', this.selectedBGC)
+        },
+        selectColor(color) {
+            this.backgroundColor = color
+                // eventBus.$emit('selectColor', color)
+            this.$emit('selectColor', color)
+        }
     },
     created() {
-        // console.log('notePreviewTxt');
-        // console.log(this.note);
+        // console.log('created');
     },
 }

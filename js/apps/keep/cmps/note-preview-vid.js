@@ -1,4 +1,9 @@
+import { eventBus } from "../../../services/event-bus-service.js"
+
 export default {
+    components: {
+        eventBus,
+    },
     props: ['note'],
     template: `
     <div class="note vid note-preview">
@@ -29,5 +34,8 @@ export default {
     created() {
         // console.log('notePreviewImg');
         // console.log(this.note);
+        console.log(this.note.style.backgroundColor);
+    },
+    mounted() {;
     },
 }

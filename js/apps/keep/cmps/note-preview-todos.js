@@ -42,5 +42,6 @@ export default {
     created() {
         // console.log('notePreviewTodos');
         // console.log(this.note);
+        console.log(this.note.style.backgroundColor);
     },
 }

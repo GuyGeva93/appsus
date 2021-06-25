@@ -1,7 +1,7 @@
 export default {
     props: ['note'],
     template: `
-    <div class="note img note-preview">
+    <div class="note img note-preview" >
     <div class="note-content">
            <p> {{note.info.label}}</p>
             <img :src="note.info.url" >
@@ -15,7 +15,7 @@ export default {
     data() {
         return {
             type: 'notePreviewImg',
-            noteId: ''
+            noteId: '',
         }
     },
     methods: {
@@ -29,5 +29,7 @@ export default {
     created() {
         // console.log('notePreviewImg');
         // console.log(this.note);
+
+        console.log(this.note.style.backgroundColor);
     },
 }

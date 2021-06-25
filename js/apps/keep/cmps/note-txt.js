@@ -14,7 +14,7 @@ export default {
         return {
             txtNote: {
                 txt: '',
-                title: ''
+                title: '',
             }
         }
     },

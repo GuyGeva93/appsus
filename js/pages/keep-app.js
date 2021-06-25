@@ -9,15 +9,16 @@ import { eventBus } from "../services/event-bus-service.js";
 import userMsg from "../cmps/user-msg.js";
 
 export default {
-  components: {
-    noteTxt,
-    noteList,
-    noteImg,
-    noteTodos,
-    userMsg,
-    noteVid
-  },
-  template: `
+    components: {
+        noteTxt,
+        noteList,
+        noteImg,
+        noteTodos,
+        userMsg,
+        noteVid,
+        eventBus
+    },
+    template: `
     <section class="keep-app">
         <div class="type-buttons">
             <button id="note-txt"  @click="selectNoteType" class=" select-note select-txt" :class="{isActive: this.selectedType === 'note-txt'}">
@@ -45,112 +46,111 @@ export default {
         <note-list @removeNote="removeNote" v-if="cmps" :notes="cmps"/>
     </section>
     `,
-  data() {
-    return {
-      cmps: null,
-      selectedType: 'note-txt',
-      userNote: null,
-      noteDetails: {},
-      isActive: ''
-    }
-  },
-  computed: {
-    notes() {
-      return this.cmps
-    }
-  },
-  methods: {
-    loadNotes() {
-      keepService.query().then(res => {
-        this.cmps = res
-        console.log(this.cmps);
-      })
+    data() {
+        return {
+            cmps: null,
+            selectedType: 'note-txt',
+            userNote: null,
+            noteDetails: {},
+            isActive: '',
+        }
     },
-    selectNoteType(ev) {
-      this.selectedType = ev.target.id;
+    computed: {
+        notes() {
+            return this.cmps
+        }
     },
-    addNote() {
-      keepService.getNoteTypeFormat(this.selectedType)
-        .then(res => {
-          this.userNote = res
-          console.log(this.userNote);
-          if (this.selectedType === 'note-txt') {
-            this.userNote.info.txt = this.noteDetails.txt
-            this.userNote.info.title = this.noteDetails.title
-            console.log(this.userNote);
-            keepService.save(this.userNote).then(() => this.loadNotes())
+    methods: {
+        loadNotes() {
+            keepService.query().then(res => {
+                this.cmps = res
+                console.log(this.cmps);
+            })
+        },
+        selectNoteType(ev) {
+            this.selectedType = ev.target.id;
+        },
+        addNote() {
+            keepService.getNoteTypeFormat(this.selectedType)
+                .then(res => {
+                    this.userNote = res
+                    console.log(this.userNote);
+                    if (this.selectedType === 'note-txt') {
+                        this.userNote.info.txt = this.noteDetails.txt
+                        this.userNote.info.title = this.noteDetails.title
+                        keepService.save(this.userNote).then(() => this.loadNotes())
+                    } else if (this.selectedType === 'note-img') {
+                        this.userNote.info.title = this.noteDetails.title
+                        this.userNote.info.url = this.noteDetails.url
+                        keepService.save(this.userNote).then(() => this.loadNotes())
 
-          } else if (this.selectedType === 'note-img') {
-            console.log('image', this.noteDetails);
-            this.userNote.info.title = this.noteDetails.title
-            this.userNote.info.url = this.noteDetails.url
-            keepService.save(this.userNote).then(() => this.loadNotes())
+                    } else if (this.selectedType === 'note-todos') {
+                        this.userNote.info.label = this.noteDetails.label
+                        this.noteDetails.todos.map(todo => {
+                            this.userNote.info.todos.push(todo)
+                        });
+                        // console.log('todos', this.noteDetails);
+                        keepService.save(this.userNote).then(() => this.loadNotes())
+                    } else if (this.selectedType === 'note-vid') {
+                        this.userNote.info.label = this.noteDetails.label
+                        if (this.noteDetails.url.includes('youtube')) {
+                            const videoId = this.getYouTubeEmbedUrl(this.noteDetails.url)
+                                // R9Kjatuf-oU
+                            const iframeMarkup = '//www.youtube.com/embed/' +
+                                videoId;
+                            this.userNote.info.url = iframeMarkup
+                        } else {
 
-          } else if (this.selectedType === 'note-todos') {
-            this.userNote.info.label = this.noteDetails.label
-            this.noteDetails.todos.map(todo => {
-              console.log(todo.txt);
-              this.userNote.info.todos.push(todo)
-            });
-            // console.log('todos', this.noteDetails);
-            keepService.save(this.userNote).then(() => this.loadNotes())
-          } else if (this.selectedType === 'note-vid') {
-            console.log('vid');
-            console.log(this.userNote);
-            this.userNote.info.label = this.noteDetails.label
-            console.log(this.userNote.info.label);
-            if (this.noteDetails.url.includes('youtube')) {
-              const videoId = this.getYouTubeEmbedUrl(this.noteDetails.url)
-              // R9Kjatuf-oU
-              console.log(videoId);
-              const iframeMarkup = '//www.youtube.com/embed/' +
-                videoId;
-              this.userNote.info.url = iframeMarkup
-            } else {
+                            this.userNote.info.url = this.noteDetails.url
+                        }
+                        keepService.save(this.userNote).then(() => this.loadNotes())
+                    }
+                });
 
-              this.userNote.info.url = this.noteDetails.url
-            }
-            keepService.save(this.userNote).then(() => this.loadNotes())
-          }
-        });
+        },
+        getYouTubeEmbedUrl(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+            const match = url.match(regExp);
+
+            return (match && match[2].length === 11) ?
+                match[2] :
+                null;
+        },
+        setNote(note) {
+            console.log(note);
+            this.noteDetails = note
+        },
+        removeNote(noteId) {
+            console.log('remove note (keepApp)', noteId);
+            keepService.remove(noteId).then(() => {
+                    const msg = {
+                        txt: 'Note Removed successfuly',
+                        type: 'success'
+                    };
+                    eventBus.$emit('show-msg', msg);
+                    this.loadNotes();
+                })
+                .catch(err => {
+                    console.log(err);
+                    const msg = {
+                        txt: 'Error, please try again',
+                        type: 'error'
+                    };
+                    eventBus.$emit('show-msg', msg);
+                });
+        },
+        toggleColors(color) {
+            return this.currBackgroundColor = color
+        }
 
     },
-    getYouTubeEmbedUrl(url) {
-      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-      const match = url.match(regExp);
-
-      return (match && match[2].length === 11) ?
-        match[2] :
-        null;
+    created() {
+        this.loadNotes()
     },
-    setNote(note) {
-      console.log(note);
-      this.noteDetails = note
+    mounted() {
+        eventBus.$on('selectColor', this.toggleColors);
     },
-    removeNote(noteId) {
-      console.log('remove note (keepApp)', noteId);
-      keepService.remove(noteId).then(() => {
-        const msg = {
-          txt: 'Note Removed successfuly',
-          type: 'success'
-        };
-        eventBus.$emit('show-msg', msg);
-        this.loadNotes();
-      })
-        .catch(err => {
-          console.log(err);
-          const msg = {
-            txt: 'Error, please try again',
-            type: 'error'
-          };
-          eventBus.$emit('show-msg', msg);
-
-        });
-    }
-
-  },
-  created() {
-    this.loadNotes()
-
-  },
+    destroyed() {
+        eventBus.$off('selectColor');
+    },
 }

@@ -1,0 +1,56 @@
+.color-palette {
+    position: absolute;
+    bottom: 32px;
+    background-color: rgb(70, 70, 70);
+    border-radius: 20px;
+    padding: 2px;
+    height: 100px;
+    width: 100px;
+}
+
+.color-palette .color {
+    object-fit: contain;
+    height: 25px;
+}
+
+.color-palette button {
+    background: none;
+    border: none;
+    outline: none;
+}
+
+#black {
+    background-color: #3e3e3e;
+}
+
+#white {
+    background-color: whitesmoke;
+}
+
+#orange {
+    background-color: orange;
+}
+
+#lightseagreen {
+    background-color: lightseagreen;
+}
+
+#pink {
+    background-color: rgb(196, 59, 81);
+}
+
+#gold {
+    background-color: gold;
+}
+
+#darkred {
+    background-color: darkred;
+}
+
+#violet {
+    background-color: rgb(192, 78, 192);
+}
+
+#lightgray {
+    background-color: lightslategray;
+}
