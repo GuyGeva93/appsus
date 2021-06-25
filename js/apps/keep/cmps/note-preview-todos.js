@@ -40,7 +40,7 @@ export default {
 
     },
     created() {
-        console.log('notePreviewTodos');
-        console.log(this.note);
+        // console.log('notePreviewTodos');
+        // console.log(this.note);
     },
 }

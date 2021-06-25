@@ -32,7 +32,7 @@ export default {
         },
     },
     created() {
-        console.log('notePreviewTxt');
-        console.log(this.note);
+        // console.log('notePreviewTxt');
+        // console.log(this.note);
     },
 }

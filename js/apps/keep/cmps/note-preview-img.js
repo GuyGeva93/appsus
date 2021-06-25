@@ -27,7 +27,7 @@ export default {
         },
     },
     created() {
-        console.log('notePreviewImg');
-        console.log(this.note);
+        // console.log('notePreviewImg');
+        // console.log(this.note);
     },
 }
