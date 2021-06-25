@@ -1,10 +1,10 @@
 import colorPalette from "./color-palette.js"
-import { eventBus } from "../../../services/event-bus-service.js"
+// import { eventBus } from "../../../services/event-bus-service.js"
 import { keepService } from "../services/keep-service.js"
 export default {
     components: {
         colorPalette,
-        eventBus
+        // eventBus
     },
     props: ['note'],
     template: `
@@ -46,7 +46,6 @@ export default {
         },
         selectColor(color) {
             this.backgroundColor = color
-                // console.log(this.note);
             this.note.style.backgroundColor = color
             keepService.update(this.note)
                 // eventBus.$emit('selectColor', color)
