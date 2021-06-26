@@ -104,14 +104,12 @@ export default {
   },
 
   mounted() {
-    eventBus.$on('starMail', this.updateMail);
-    eventBus.$on('readMail', this.updateMail);
+    eventBus.$on('updateMail', this.updateMail);
     eventBus.$on('removeMail', this.removeMail);
   },
 
   destroyed() {
-    eventBus.$off('mailStarred');
-    eventBus.$off('readMail');
+    eventBus.$off('updateMail', this.updateMail);
     eventBus.$off('removeMail');
   },
 

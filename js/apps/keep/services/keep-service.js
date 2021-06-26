@@ -10,43 +10,43 @@ export const keepService = {
 }
 const NOTES_KEY = 'notes';
 const gNotes = [{
-        id: storageService._makeId(),
-        type: "note-txt",
-        isPinned: true,
-        info: {
-            txt: "Fullstack Me Baby!"
-        },
-        style: {
-            backgroundColor: _createRandColor()
-        }
+    id: storageService._makeId(),
+    type: "note-txt",
+    isPinned: true,
+    info: {
+        txt: "Fullstack Me Baby!"
     },
-    {
-        id: storageService._makeId(),
-        type: "note-img",
-        isPinned: false,
-        info: {
-            url: "img/some-img.jpg",
-            title: "Me playing Mi"
-        },
-        style: {
-            backgroundColor: _createRandColor()
-        }
-    },
-    {
-        id: storageService._makeId(),
-        type: "note-todos",
-        isPinned: false,
-        info: {
-            label: "How was it:",
-            todos: [
-                { txt: "Do that", doneAt: null },
-                { txt: "Do this", doneAt: 187111111 }
-            ]
-        },
-        style: {
-            backgroundColor: _createRandColor()
-        }
+    style: {
+        backgroundColor: _createRandColor()
     }
+},
+{
+    id: storageService._makeId(),
+    type: "note-img",
+    isPinned: false,
+    info: {
+        url: "img/some-img.jpg",
+        title: "Me playing Mi"
+    },
+    style: {
+        backgroundColor: _createRandColor()
+    }
+},
+{
+    id: storageService._makeId(),
+    type: "note-todos",
+    isPinned: false,
+    info: {
+        label: "How was it:",
+        todos: [
+            { txt: "Do that", doneAt: null },
+            { txt: "Do this", doneAt: 187111111 }
+        ]
+    },
+    style: {
+        backgroundColor: _createRandColor()
+    }
+}
 ];
 
 function getNoteTypeFormat(type) {
@@ -149,6 +149,5 @@ function getById(notesId) {
 //need to find a function with less colors
 function _createRandColor() {
     const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-    console.log(randomColor);
     return randomColor
 }
