@@ -6,9 +6,11 @@ import { eventBus } from '../../../services/event-bus-service.js'
 export default {
   template: `
     <section class="mail-app">
+      <div class="main-screen" @click="toggleMenu" />
       <header class="mail-app-header">
         <h2>G-mail</h2>
         <input type="text" placeholder="Search mail" v-model="searchBy" @input="search">
+        <i class="fas fa-bars hamburger" @click="toggleMenu"></i>
       </header>
       <section class="mail-app-container">
       <nav class="mail-nav">
@@ -24,6 +26,7 @@ export default {
         <mail-list :mails="filterMails" />
      </section>
     </section>
+  
   `,
 
   data() {
@@ -92,6 +95,9 @@ export default {
         return mail.subject.includes(this.searchBy)
       })
       return this.filterMails
+    },
+    toggleMenu() {
+      document.body.classList.toggle('menu-open')
     }
   },
 
