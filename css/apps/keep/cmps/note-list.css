@@ -1,6 +1,11 @@
 .note-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 320px);
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: masonry;
     gap: 5px;
-    grid-auto-flow: dense;
+    /* grid-auto-flow: dense; */
+}
+
+.note-list article {
+    max-width: 320px;
 }

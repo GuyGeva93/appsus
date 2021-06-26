@@ -22,8 +22,8 @@ export default {
        <p @click.stop.prevent="isNoteClicked('txt')" :id="note.id" v-show="!isTxtClicked">{{note.info.txt}}</p>
       </div>
         <div class="note-btns">
-    <button @click="removeNote" class="remove">X</button>
-    <button @click="isPaletteOpen = !isPaletteOpen" class="colors fas fa-palette"></button>
+        <i @click="isPaletteOpen = !isPaletteOpen" class="colors fas fa-palette"></i>
+<i @click="removeNote" class="remove fas fa-window-close"></i>
     <color-palette v-if="isPaletteOpen"  @selectColor="selectColor" :note="note"/>
         </div>
     </div>
@@ -68,7 +68,7 @@ export default {
             this.backgroundColor = color
             this.note.style.backgroundColor = color
             keepService.update(this.note)
-            // eventBus.$emit('selectColor', color)
+                // eventBus.$emit('selectColor', color)
 
             this.$emit('selectColor', color)
         },

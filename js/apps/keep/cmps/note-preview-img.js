@@ -14,8 +14,8 @@ export default {
             <img :src="note.info.url" >
           </div>
         <div class="note-btns">
-        <button @click="removeNote" class="remove">X</button>
-        <button @click="isPaletteOpen = !isPaletteOpen" class="colors"><i class="fas fa-palette"></i></button>
+        <i @click="isPaletteOpen = !isPaletteOpen" class="colors fas fa-palette"></i>
+<i @click="removeNote" class="remove fas fa-window-close"></i>
 
         <color-palette v-if="isPaletteOpen"  @selectColor="selectColor" :note="note"/>
          </div>

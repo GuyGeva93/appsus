@@ -13,16 +13,16 @@ export default {
     <div class="note-content">
           <u>label: {{note.info.label}}</u>
           <ul class="todo" v-for="(todo,idx) in this.note.info.todos">
-            <li @click.stop.prevent="isNoteClicked" ref="todo" @click="toggleDone(todo)" :class="{done: todo.isDone}" v-show="!isTodoClicked">
-            <input class="todo-input" @blur="editValue" type="text" :value="todo" v-show="isTodoClicked"/>
+            <li ref="todo" @click="toggleDone(todo)" :class="{done: todo.isDone}">
              {{todo.txt}}
             </li>
           </ul>
+          <div class="add-todo-input" v-show="isAdding"><input type="text" > | <i @click="addTodo" class="fas fa-plus-square"></i></div>
         </div>
           <div class="note-btns">
-          <button @click="removeNote" class="remove">X</button>
-          <button @click="isPaletteOpen = !isPaletteOpen" class="colors"><i class="fas fa-palette"></i></button>
-
+              <i @click="isPaletteOpen = !isPaletteOpen" class="colors fas fa-palette"></i>
+              <i @click="toggleAddTodoInput" class="addTodo fas fa-plus-square"></i>
+              <i @click="removeNote" class="remove fas fa-window-close"></i>
           <color-palette v-if="isPaletteOpen"  @selectColor="selectColor" :note="note"/>
            </div>
             </div>
@@ -34,7 +34,8 @@ export default {
             noteId: '',
             backgroundColor: '',
             isPaletteOpen: false,
-            isTodoClicked: false
+            isAdding: false,
+            newTodoValue: 'nothing yet'
         }
     },
     computed: {
@@ -46,17 +47,6 @@ export default {
 
 
     methods: {
-        editValue(ev) {
-            this.note.info.txt = ev.target.value
-            this.isTodoClicked = false
-            keepService.update(this.note)
-        },
-        isNoteClicked() {
-            this.isTxtClicked = true
-            Promise.resolve().then(() => {
-                document.querySelector('.todo-input').focus()
-            })
-        },
         returnTxt() {
             this.$emit('setNotePreview', this.type)
         },
@@ -77,6 +67,20 @@ export default {
         toggleDone(todo) {
             todo.isDone = !todo.isDone
             keepService.update(this.note)
+        },
+        toggleAddTodoInput() {
+            this.isAdding = !this.isAdding
+
+        },
+        addTodo(ev) {
+            console.log('arrived');;
+            if (!ev.target.previousElementSibling.value) return
+            console.log('not empty');
+            this.note.info.todos.push({ txt: ev.target.previousElementSibling.value, isDone: false })
+            this.isAdding = false
+            keepService.save(this.note)
+            ev.target.previousElementSibling.value = '';
+            //maybe will need to use ref if this doesnt set the value to empty
         }
     },
     created() {},
