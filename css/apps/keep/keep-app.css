@@ -3,6 +3,53 @@
     min-height: 89vh;
 }
 
+.chalkboard-img {
+    position: absolute;
+    height: 200px;
+    opacity: 0.9;
+    right: 200px;
+    top: -130px;
+    transform: rotate(180deg);
+    transform-origin: center bottom;
+    animation: tilt 8s linear infinite;
+}
+
+@keyframes tilt {
+    0% {
+        transform: rotate(180deg);
+    }
+    10% {
+        transform: rotate(181deg);
+    }
+    20% {
+        transform: rotate(180deg);
+    }
+    30% {
+        transform: rotate(179deg);
+    }
+    40% {
+        transform: rotate(180deg);
+    }
+    50% {
+        transform: rotate(181deg);
+    }
+    60% {
+        transform: rotate(180deg);
+    }
+    70% {
+        transform: rotate(179deg);
+    }
+    80% {
+        transform: rotate(180deg);
+    }
+    90% {
+        transform: rotate(182deg);
+    }
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
 .keep-icons {
     height: 50px;
     border-radius: 10px;
@@ -57,6 +104,7 @@
     width: 500px;
     min-width: 330px;
     height: 100px;
+    resize: none;
 }
 
 .type-buttons {

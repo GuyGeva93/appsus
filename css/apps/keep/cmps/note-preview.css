@@ -38,6 +38,8 @@
     background-color: #979494;
     padding: 4px;
     transition: opacity 0.6s;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .note-btns i {
@@ -88,7 +90,16 @@
     justify-content: space-between;
 }
 
+.todo li,
+.todo i {
+    cursor: pointer;
+}
+
 .add-todo-input {
     position: absolute;
     bottom: 36px
+}
+
+.pinned {
+    box-shadow: 2px 4px 4px 5px black;
 }

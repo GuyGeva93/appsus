@@ -20,6 +20,7 @@ export default {
     },
     template: `
     <section class="keep-app">
+        <img class="chalkboard-img"src="img/bulb.png">
         <div class="type-buttons">
             <button id="note-txt"  @click="selectNoteType" class=" select-note select-txt" :class="{isActive: this.selectedType === 'note-txt'}">
                 <img id="note-txt" class="keep-icons" src="img/txt-icon.png" >
@@ -85,6 +86,7 @@ export default {
 
                     } else if (this.selectedType === 'note-todos') {
                         this.userNote.info.label = this.noteDetails.label
+                        if (!this.noteDetails.todos) return
                         this.noteDetails.todos.map(todo => {
                             this.userNote.info.todos.push(todo)
                         });
