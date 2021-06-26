@@ -4,13 +4,19 @@
     body {
         overflow-x: hidden;
     }
+    html {
+        max-width: 100vw;
+        max-height: 100vh;
+    }
     .app-header {
         width: 100%;
     }
     .home-page p {
         font-size: 1rem;
     }
-    .bg {
+    .bg,
+    .bg2,
+    .bg3 {
         animation: none !important;
         display: none;
     }
@@ -25,7 +31,10 @@
     .note-btns {
         opacity: 1
     }
-    .note-txt input, .note-img input, .note-vid input, .note-todos input {
+    .note-txt input,
+    .note-img input,
+    .note-vid input,
+    .note-todos input {
         min-width: none;
         width: 330px;
     }
