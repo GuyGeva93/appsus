@@ -4,9 +4,9 @@ export default {
 
   template: `
   <section class='mail-expand'>
-    <p>From: {{mail.from}}</p>
+    <p>From: {{mail.from}} {{mail.sentAt}}</p>
     <p>Subject: {{mail.subject}}</p>
-    <p>{{mail.body}}</p>
+    <div>{{mail.body}}</div>
   </section>
   `,
 
