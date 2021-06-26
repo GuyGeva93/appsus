@@ -1,6 +1,41 @@
 .mail-expand {
+  position: relative;
   background-color: whitesmoke;
   color: black;
   display: flex;
   flex-direction: column;
+  border-bottom: 2px solid;
+  word-break: break-all;
+  line-height: normal;
+}
+
+.mail-expand-from {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgray;
+}
+
+.mail-expand-subject {
+  border-bottom: 1px solid lightgray;
+}
+
+.mail-expand-body {
+  line-height: 25px;
+  font-size: 1rem;
+}
+
+.mail-expand-minimize {
+  position: absolute;
+  top: 0;
+  right: 50%;
+  width: 250px;
+  height: 50px;
+  color: rgb(192, 190, 190);
+  font-size: 1rem;
+  transform: translate(50%);
+  cursor: pointer;
+}
+
+.padding {
+  padding: 10px;
 }

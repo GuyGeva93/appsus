@@ -14,7 +14,7 @@ export default {
   `,
 
   methods: {
-    readMail() {
+    mailRead() {
       this.mail.isRead = !this.mail.isRead
       eventBus.$emit('readMail', this.mail)
     },

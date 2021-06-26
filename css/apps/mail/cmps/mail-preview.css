@@ -1,68 +1,82 @@
 .mail-preview {
-    display: flex;
-    justify-content: space-between;
-    height: 40px;
-    align-items: center;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  height: 40px;
+  align-items: center;
+}
+
+.mail-preview:hover .mail-preview-icons {
+  display: flex;
 }
 
 .mail-preview-icons {
-    display: flex;
-    gap: 5px;
+  display: none;
+  position: absolute;
+  right: 0;
+  justify-content: space-between;
+  width: 100px;
 }
 
 .read {
-    background-color: #b3b8b8;
+  background-color: #b3b8b8;
 }
 
 .unread {
-    font-weight: bolder;
+  font-weight: bolder;
 }
 
 table {
-    width: 100%;
-    border: gold 1px solid;
-    background-color: rgb(219, 217, 217);
+  width: 100%;
+  border: gold 1px solid;
+  background-color: rgb(219, 217, 217);
+}
+
+.mail-preview-subject-td {
+  display: inline-block;
+}
+
+.mail-preview-teaser {
+  font-size: 0.8rem;
+  font-weight: lighter;
 }
 
 tr.mail-preview-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  width: 100%;
+}
+
+td.mail-preview-subject-td {
+  padding-inline-start: 30px;
 }
 
 .mail-preview {
-    border-bottom: black 1px solid;
+  border-bottom: black 1px solid;
 }
 
 .mail-preview:hover {
-    background-color: rgba(194, 224, 235, 0.294);
-    box-shadow: #4e4e4e 1px 1px 2px;
-    cursor: pointer;
+  background-color: rgba(194, 224, 235, 0.294);
+  box-shadow: #4e4e4e 1px 1px 2px;
+  cursor: pointer;
 }
 
 td {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 1fr);
-    color: #2e2e2e;
+  color: #2e2e2e;
 }
 
-
-/* tr:hover {
-    background-color: #8e889b;
-} */
-
 .fa-trash-alt:hover {
-    animation: shake 0.4s linear 1;
+  animation: shake 0.4s linear 1;
 }
 
 @keyframes shake {
-    25% {
-        transform: rotate(20deg);
-    }
-    50% {
-        transform: rotate(-20deg);
-    }
-    75% {
-        transform: rotate(20deg);
-    }
+  25% {
+    transform: rotate(20deg);
+  }
+  50% {
+    transform: rotate(-20deg);
+  }
+  75% {
+    transform: rotate(20deg);
+  }
 }
