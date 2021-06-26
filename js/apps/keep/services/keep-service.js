@@ -146,7 +146,7 @@ function update(note) {
 function getById(notesId) {
     return storageService.get(NOTES_KEY, notesId);
 }
-
+//need to find a function with less colors
 function _createRandColor() {
     const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
     console.log(randomColor);

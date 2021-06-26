@@ -139,18 +139,18 @@ export default {
                     eventBus.$emit('show-msg', msg);
                 });
         },
-        toggleColors(color) {
-            console.log(this.noteDetails);
-            // return this.userNote.style.backgroundColor = color
-        }
+        // toggleColors(color) {
+        //     console.log(this.noteDetails);
+        //     // return this.userNote.style.backgroundColor = color
+        // }
 
     },
     created() {
         this.loadNotes()
     },
-    mounted() {
-        eventBus.$on('selectColor', this.toggleColors);
-    },
+    // mounted() {
+    //     eventBus.$on('selectColor', this.toggleColors);
+    // },
     destroyed() {
         eventBus.$off('selectColor');
     },

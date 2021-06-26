@@ -1,4 +1,4 @@
-import { storageService } from "../../../services/async-storage-service.js";
+// import { storageService } from "../../../services/async-storage-service.js";
 import colorPalette from "./color-palette.js"
 import { keepService } from "../services/keep-service.js"
 
@@ -12,10 +12,10 @@ export default {
     template: `
     <div class="note todos note-preview" :style="{backgroundColor: selectedColor}">
     <div class="note-content">
-          label: {{note.info.label}}
-          <ul class="todo" v-for="todo in this.note.info.todos">
-            <li >
-              <input type="checkbox" :id="randomId"> {{todo.txt}}
+          <u>label: {{note.info.label}}</u>
+          <ul class="todo" v-for="(todo,idx) in this.note.info.todos">
+            <li @click="toggleDone(idx)" :class="{done : isDone}" id="idx">
+             {{todo.txt}}
             </li>
           </ul>
         </div>
@@ -33,13 +33,14 @@ export default {
             type: 'notePreviewImg',
             noteId: '',
             backgroundColor: '',
-            isPaletteOpen: false
+            isPaletteOpen: false,
+            isDone: false
         }
     },
     computed: {
-        randomId() {
-            return storageService._makeId()
-        },
+        // randomId() {
+        //     return storageService._makeId()
+        // },
         selectedColor() {
             return this.backgroundColor
         }
@@ -63,8 +64,10 @@ export default {
                 // eventBus.$emit('selectColor', color)
 
             this.$emit('selectColor', color)
+        },
+        toggleDone() {
+            this.isDone = !this.isDone
         }
-
     },
     created() {
         // console.log('notePreviewTodos');
