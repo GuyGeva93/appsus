@@ -4,10 +4,15 @@ export default {
 
   template: `
   <section class='mail-expand'>
-    <p>From: {{mail.from}} {{mail.sentAt}}</p>
-    <p>Subject: {{mail.subject}}</p>
-    <div>{{mail.body}}</div>
+    <span class="mail-expand-minimize">Click anywhere to minimize</span>
+    <article class="mail-expand-from padding">
+      <span>From: {{mail.from}}</span>
+      <span>{{mail.sentAt}}</span>
+    </article>
+    <span class="mail-expand-subject padding">Subject: {{mail.subject}}</span>
+    <span class="mail-expand-body padding">{{mail.body}}</span>
   </section>
   `,
+
 
 }

@@ -1,17 +1,18 @@
 .home-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin: 5px;
-    min-height: 87.5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 5px;
+  min-height: 87.5vh;
+  padding: 50px 50px;
 }
 
 .img-homepage-1 {
-    object-fit: contain;
-    max-height: 270px;
+  object-fit: contain;
+  max-height: 270px;
 }
 
 .home-page p {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
