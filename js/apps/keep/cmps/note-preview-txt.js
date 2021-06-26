@@ -8,14 +8,22 @@ export default {
     },
     props: ['note'],
     template: `
-    <div class="note txt note-preview" :style="{backgroundColor: selectedColor}">
+    <div class="note txt note-preview" :style="{backgroundColor: selectedColor}" :id="note.id">
          <div class="note-content">
-       <u> {{note.info.title}}:</u>
-       <p> {{note.info.txt}}</p>
+       <u @click.stop.prevent="isNoteClicked('title')" v-show="!isTitleClicked" class="title"> {{note.info.title}}:</u>
+       <input class="title-input" @blur="editValue('title',$event)" type="text" :value="note.info.title" v-show="isTitleClicked"/>
+       <p 
+       @click.stop.prevent="isNoteClicked('title')" 
+       v-show="isTxtClicked">
+       <textarea  @blur="editValue('txt',$event)" 
+       class="txt-note-textarea" 
+       type="text"><span>{{note.info.txt}}</span></textarea>
+       </p>
+       <p @click.stop.prevent="isNoteClicked('txt')" :id="note.id" v-show="!isTxtClicked">{{note.info.txt}}</p>
       </div>
         <div class="note-btns">
     <button @click="removeNote" class="remove">X</button>
-    <button @click="isPaletteOpen = !isPaletteOpen" class="colors"><i class="fa-solid fa-palette"></i></button>
+    <button @click="isPaletteOpen = !isPaletteOpen" class="colors fa-solid fa-palette"></button>
     <color-palette v-if="isPaletteOpen"  @selectColor="selectColor" :note="note"/>
         </div>
     </div>
@@ -25,7 +33,9 @@ export default {
             type: 'notePreviewTxt',
             noteId: '',
             backgroundColor: '',
-            isPaletteOpen: false
+            isPaletteOpen: false,
+            isTxtClicked: false,
+            isTitleClicked: false,
         }
     },
     computed: {
@@ -35,6 +45,16 @@ export default {
     },
 
     methods: {
+        editValue(whatToEdit, ev) {
+            if (whatToEdit === 'txt') {
+                this.note.info.txt = ev.target.value
+                this.isTxtClicked = false
+            } else {
+                this.note.info.title = ev.target.value
+                this.isTitleClicked = false
+            }
+            keepService.update(this.note)
+        },
         returnTxt() {
             this.$emit('setNotePreview', this.type)
         },
@@ -51,6 +71,19 @@ export default {
                 // eventBus.$emit('selectColor', color)
 
             this.$emit('selectColor', color)
+        },
+        isNoteClicked(whatToEdit) {
+            if (whatToEdit === 'txt') {
+                this.isTxtClicked = true
+                Promise.resolve().then(() => {
+                    document.querySelector('.txt-note-textarea').focus()
+                })
+            } else {
+                this.isTitleClicked = true
+                Promise.resolve().then(() => {
+                    document.querySelector('.title-input').focus()
+                })
+            }
         }
     },
     created() {

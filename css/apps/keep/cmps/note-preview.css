@@ -68,3 +68,10 @@
     height: 25px;
     margin-bottom: 5px;
 }
+
+.txt-note-textarea {
+    outline: none;
+    resize: none;
+    height: 100%;
+    width: 100%;
+}
