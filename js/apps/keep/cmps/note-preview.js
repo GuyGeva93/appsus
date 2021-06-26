@@ -1,8 +1,10 @@
 import { storageService } from "../../../services/async-storage-service.js";
+import { keepService } from "../services/keep-service.js";
 import notePreviewTxt from "./note-preview-txt.js";
 import notePreviewImg from "./note-preview-img.js";
 import notePreviewTodos from "./note-preview-todos.js";
 import notePreviewVid from "./note-preview-vid.js";
+import { eventBus } from "../../../services/event-bus-service.js";
 
 export default {
     components: {
@@ -24,7 +26,8 @@ export default {
     `,
     data() {
         return {
-            todo: ''
+            todo: '',
+            // selectedColor: ''
         }
     },
     computed: {
@@ -43,7 +46,13 @@ export default {
             console.log('removing note(note preview)', noteId);
             this.$emit('removeNote', noteId)
         },
-
+        toggleColors(color) {
+            console.log(this.note);
+            return
+        }
+    },
+    mounted() {
+        eventBus.$on('selectColor', this.toggleColors);
     },
 
 }

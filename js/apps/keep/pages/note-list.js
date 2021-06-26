@@ -1,4 +1,6 @@
+import { storageService } from "../../../services/async-storage-service.js";
 import notePreview from "../cmps/note-preview.js";
+import { keepService } from "../services/keep-service.js";
 
 export default {
     components: {
@@ -7,20 +9,15 @@ export default {
     props: ['notes'],
     template: `
     <section class="note-list">
-        <article v-for="note in notes" :key="note.id">
-            <note-preview @removeNote="removeNote" :note="note"/>
+        <article v-for="note in notes" :key="note.id" >
+            <note-preview @removeNote="removeNote" :note="note" :style="{backgroundColor: note.style.backgroundColor}"/>
         </article>
     </section>
     `,
-    data() {
-        return {
-            savedNotes: ''
-        }
-    },
     methods: {
         removeNote(noteId) {
-            console.log('removing note(note list)', noteId);
             this.$emit('removeNote', noteId)
-        }
+        },
+
     },
 }

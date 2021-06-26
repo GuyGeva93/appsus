@@ -1,0 +1,70 @@
+.note {
+    position: relative;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+    min-width: 200px;
+    max-width: 400px;
+    border: 1px black solid;
+    padding: 0;
+    border-radius: 10px;
+    /* background-color: lightseagreen; */
+}
+
+.note-preview {
+    border-radius: 10px;
+}
+
+.note-content {
+    padding: 10px;
+}
+
+.note-content .vid-iframe {
+    margin-bottom: 20px;
+}
+
+.note button {
+    background-color: burlywood;
+    width: 25px;
+    height: 25px;
+}
+
+.note-btns {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    opacity: 0;
+    justify-items: flex-end;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #979494;
+    padding: 4px;
+    transition: opacity 0.6s;
+}
+
+.note:hover .note-btns {
+    opacity: 0.9;
+}
+
+.note img {
+    align-self: center;
+    object-fit: contain;
+    max-width: 300px;
+}
+
+.todo {
+    border-bottom: 1px solid #000;
+    padding-bottom: 2px;
+    list-style: none;
+}
+
+.note-img input,
+.note-txt input,
+.note-todos input,
+.note-vid input {
+    width: 500px;
+    height: 25px;
+    margin-bottom: 5px;
+}

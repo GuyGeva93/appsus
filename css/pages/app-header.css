@@ -1,19 +1,22 @@
 .app-header {
-  display: flex;
-  justify-content: space-between;
-  background-color: gold;
+    display: flex;
+    justify-content: space-between;
+    background-color: gold;
+    height: 44px;
+    margin-top: auto;
 }
 
 .app-header-logo {
-  margin-left: 10px;
-  align-self: center;
-  font-family: Mate-SC;
-  color: #2e2e2e;
+    margin-left: 10px;
+    align-self: center;
+    font-family: Mate-SC;
+    color: #2e2e2e;
 }
 
-.app-header ul, .app-header li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  margin-top: 10px
+.app-header ul,
+.app-header li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 10px
 }
