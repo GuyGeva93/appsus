@@ -1,6 +1,9 @@
 /* home page */
 
 @media (max-width: 600px) {
+    body {
+        overflow-y: hidden;
+    }
     .app-header {
         width: 100%;
     }
@@ -32,5 +35,53 @@
     .note-txt textarea {
         min-width: none;
         width: 330px;
+    }
+    .mail-app {
+        padding: 0;
+        margin: 0;
+    }
+    .mail-app-header {
+        height: 50px;
+    }
+    .mail-app-header h2 {
+        font-size: 1.2rem;
+        width: 200px;
+        align-self: center;
+    }
+    .mail-app-header input {
+        height: 40px;
+    }
+    .mail-nav {
+        display: none;
+        /* transform: translate(-100%); */
+    }
+    .mail-list {
+        font-size: 0.8rem;
+        width: 100%;
+    }
+    .mail-preview-teaser {
+        display: none;
+    }
+    td {
+        width: 150px;
+        padding: 5px;
+    }
+    td.mail-preview-subject-td {
+        padding: 0
+    }
+    .mail-preview {
+        border-bottom: none;
+    }
+    td:nth-child(3) {
+        display: none;
+    }
+    .mail-preview-icons {
+        display: block;
+        right: -40px;
+        margin: 0;
+        left: unset;
+    }
+    tr.mail-preview-container {
+        grid-template-columns: 1fr 2fr;
     }
 }
