@@ -24,7 +24,7 @@ export default {
             this.$emit('setNote', this.todos)
         },
         addTodo() {
-            this.todos.todos.push({ txt: this.todos.todos.txt, createdAt: Date.now() })
+            this.todos.todos.push({ txt: this.todos.todos.txt, isDone: false })
         }
     },
     created() {},

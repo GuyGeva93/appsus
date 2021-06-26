@@ -1,4 +1,3 @@
-// import { storageService } from "../../../services/async-storage-service.js";
 import colorPalette from "./color-palette.js"
 import { keepService } from "../services/keep-service.js"
 
@@ -14,7 +13,8 @@ export default {
     <div class="note-content">
           <u>label: {{note.info.label}}</u>
           <ul class="todo" v-for="(todo,idx) in this.note.info.todos">
-            <li @click="toggleDone(idx)" :class="{done : isDone}" id="idx">
+            <li @click.stop.prevent="isNoteClicked" ref="todo" @click="toggleDone(todo)" :class="{done: todo.isDone}" v-show="!isTodoClicked">
+            <input class="todo-input" @blur="editValue" type="text" :value="todo" v-show="isTodoClicked"/>
              {{todo.txt}}
             </li>
           </ul>
@@ -34,20 +34,29 @@ export default {
             noteId: '',
             backgroundColor: '',
             isPaletteOpen: false,
-            isDone: false
+            isTodoClicked: false
         }
     },
     computed: {
-        // randomId() {
-        //     return storageService._makeId()
-        // },
         selectedColor() {
             return this.backgroundColor
-        }
+        },
+
     },
 
 
     methods: {
+        editValue(ev) {
+            this.note.info.txt = ev.target.value
+            this.isTodoClicked = false
+            keepService.update(this.note)
+        },
+        isNoteClicked() {
+            this.isTxtClicked = true
+            Promise.resolve().then(() => {
+                document.querySelector('.todo-input').focus()
+            })
+        },
         returnTxt() {
             this.$emit('setNotePreview', this.type)
         },
@@ -65,8 +74,9 @@ export default {
 
             this.$emit('selectColor', color)
         },
-        toggleDone() {
-            this.isDone = !this.isDone
+        toggleDone(todo) {
+            todo.isDone = !todo.isDone
+            keepService.update(this.note)
         }
     },
     created() {},
