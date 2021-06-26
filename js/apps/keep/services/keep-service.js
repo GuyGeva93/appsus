@@ -6,8 +6,12 @@ export const keepService = {
     save,
     getById,
     getNoteTypeFormat,
-    update
+    update,
+    queryPinned,
+    savePinned
 }
+const gPinnedNotes = []
+const PINNED_NOTES_KEY = 'pinned notes'
 const NOTES_KEY = 'notes';
 const gNotes = [{
         id: storageService._makeId(),
@@ -130,12 +134,28 @@ function query() {
     })
 }
 
+function queryPinned() {
+    return storageService.queryNotes(PINNED_NOTES_KEY).then(res => {
+        if (!res.length || !res) {
+            console.log('accessed "cash"');
+            storageService.postMany(PINNED_NOTES_KEY, gPinnedNotes)
+            return gPinnedNotes
+        } else {
+            return res
+        }
+    })
+}
+
 function remove(noteId) {
     return storageService.remove(NOTES_KEY, noteId);
 }
 
 function save(note) {
     return storageService.post(NOTES_KEY, note);
+}
+
+function savePinned(note) {
+    return storageService.post(PINNED_NOTES_KEY, note);
 }
 
 function update(note) {

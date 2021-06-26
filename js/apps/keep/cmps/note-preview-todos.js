@@ -21,12 +21,10 @@ export default {
         <div class="add-todo-input" v-show="isAdding"><input type="text" > | <i @click="addTodo" class="fas fa-plus-square"></i></div>
     </div>
     <div class="note-btns">
-              <i @click="pinNote" class="fas fa-thumbtack"></i>
+              <!-- <i @click="pinNote" class="fas fa-thumbtack"></i> -->
               <i @click="isPaletteOpen = !isPaletteOpen" class="colors fas fa-palette"></i>
               <i @click="toggleAddTodoInput" class="addTodo fas fa-plus-square"></i>
               <i @click="removeNote" class="remove fas fa-window-close"></i>
-              
-
           <color-palette v-if="isPaletteOpen"  @selectColor="selectColor" :note="note"/>
            </div>
             </div>
@@ -51,8 +49,9 @@ export default {
 
 
     methods: {
-        loadNotes() {
-            keepService.query().then(res => {
+
+        loadPinnedNotes() {
+            keepService.queryPinned().then(res => {
                 this.cmps = res
             })
         },
@@ -98,14 +97,17 @@ export default {
             this.note.info.todos.splice(selectedTodo, 1)
             keepService.update(this.note)
         },
-        pinNote() {
-            this.note.isPinned = !this.note.isPinned
+        // pinNote() {
+        //     this.note.isPinned = !this.note.isPinned
+        //     if (this.note.isPinned) {
+        //         keepService.remove(this.note.id).then(() => {
+        //             keepService.savePinned(this.note)
 
-            keepService.remove(this.note.id).then(() => {
-                this.loadNotes();
-            });
-
-        }
+        //             this.loadPinnedNotes()
+        //         });
+        //         this.$emit('setPinnedNote', this.note)
+        //     }
+        // }
     },
     created() {},
 }
