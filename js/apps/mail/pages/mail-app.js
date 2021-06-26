@@ -14,10 +14,12 @@ export default {
       <nav class="mail-nav">
         <router-link to="/mail-compose">
         <div class="link-compose"><img class="plus-icon" src="img/plus-icon.png"> <span> Compose </span></div></router-link>
-        <router-link @click.native="mailsToShow($route.path)" to="/mail">Inbox {{countMails}}</router-link>
+        <router-link @click.native="mailsToShow($route.path)" to="/mail">Inbox</router-link>
         <router-link @click.native="mailsToShow($route.path)" to="/sent">Sent</router-link>
         <router-link @click.native="mailsToShow($route.path)" to="/draft">Draft</router-link>
         <router-link @click.native="mailsToShow($route.path)" to="/star">Star</router-link>
+        <span class="mail-app-count-mails">{{countMails}} Read</span>
+        <div class="mail-app-meter"><span :style="{width: countMails}"></span></div>
      </nav>
         <mail-list :mails="filterMails" />
      </section>
@@ -54,7 +56,9 @@ export default {
         })
     },
     updateMail(mail) {
+      console.log(mail);
       mailService.put(mail)
+      // this.mailsToShow(this.$router.path) -> Bug with drafts 
     },
     setFilter(route) {
       this.filterBy = route
@@ -94,23 +98,35 @@ export default {
   computed: {
     countMails() {
       const mailsCount = this.mails.filter(mail => {
-        if (mail.isRead) return mail
+        if (mail.isRead && !mail.isDraft) return mail
       })
-      if (mailsCount.length === this.mails.length) return ''
+      // if (mailsCount.length === this.mails.length) return ''
+      console.log(parseInt(mailsCount.length / this.mails.length * 100));
       return `${parseInt(mailsCount.length / this.mails.length * 100)}%`
-
     },
+    // countMails() {
+    //   const mailsCount = this.mails.filter(mail => {
+    //     if (mail.isRead) return mail
+    //   })
+    //   if (mailsCount.length === this.mails.length) return ''
+    //   return `(${parseInt(mailsCount.length / this.mails.length * 100)}% unread)`
+    // },
 
   },
 
   mounted() {
-    eventBus.$on('updateMail', this.updateMail);
-    eventBus.$on('removeMail', this.removeMail);
+    eventBus.$on('starMail', this.updateMail)
+    eventBus.$on('readMail', this.updateMail)
+    eventBus.$on('removeMail', this.removeMail)
+    eventBus.$on('draftSent', this.updateMail)
   },
 
   destroyed() {
-    eventBus.$off('updateMail', this.updateMail);
-    eventBus.$off('removeMail');
+    eventBus.$off('starMail')
+    eventBus.$off('readMail')
+    eventBus.$off('removeMail')
+    eventBus.$off('draftSent')
+
   },
 
   components: {

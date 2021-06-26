@@ -25,7 +25,7 @@ const routes = [{
     {
       path: '/star',
       component: mailList
-    }
+    },
   ]
 },
 {

@@ -1,4 +1,5 @@
 import { eventBus } from "../../../services/event-bus-service.js"
+import { mailService } from "../services/mail-service.js"
 
 export default {
   props: ['mail'],
@@ -10,11 +11,11 @@ export default {
       <span>From: {{mail.from}}</span>
       <span>{{mail.sentAt}}</span>
     </article>
-    <input type="text" :value="mail.subject" v-show="isEdit.subject">
+    <input type="text" :value="mail.subject" v-show="isEdit.subject" @blur="edit">
     <span @click.stop="editDraft('subject')" v-show="!isEdit.subject" class="mail-expand-subject padding">Subject: {{mail.subject}}</span>
     <textarea cols="30" rows="10" :value="mail.subject" v-show="isEdit.body" />
     <span @click.stop="editDraft" class="mail-expand-body padding" v-show="!isEdit.body">{{mail.body}}</span>
-    <button @click.stop="sendDraft(mail)">Send</button>
+   <button @click.stop="sendDraft(mail)">Send</button>
   </section>
   `,
 
@@ -24,7 +25,9 @@ export default {
       isEdit: {
         subject: false,
         body: false
-      }
+      },
+      subject: '',
+      body: ''
     }
   },
 
@@ -39,12 +42,23 @@ export default {
       eventBus.$emit('updateMail', this.mail)
     },
     sendDraft(draft) {
-      console.log(draft);
-      eventBus.$emit('sendDraft', draft)
-    }
+      this.isExpand = false
+      this.mailCompress()
+      this.mail.isRead = false
+      draft.isDraft = false
+      draft.subject = this.subject
+      draft.body = this.body
+      this.$router.push({ path: '/mail' })
+      eventBus.$emit('draftSent', draft)
+    },
+    edit(ev) {
+      this.subject = ev.target.value
+      this.body = ev.target.value
+    },
+
   },
 
   components: {
-    eventBus,
+    mailService
   },
 }

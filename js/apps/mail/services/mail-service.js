@@ -36,7 +36,6 @@ function remove(mailId) {
 }
 
 function put(mail) {
-  console.log(mail);
   storageService.put(MAIL_KEY, mail)
 }
 
