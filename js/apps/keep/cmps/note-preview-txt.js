@@ -12,8 +12,8 @@ export default {
          <div class="note-content">
        <u @click.stop.prevent="isNoteClicked('title')" v-show="!isTitleClicked" class="title"> {{note.info.title}}:</u>
        <input class="title-input" @blur="editValue('title',$event)" type="text" :value="note.info.title" v-show="isTitleClicked"/>
-       <p 
-       @click.stop.prevent="isNoteClicked('title')" 
+
+       <p @click.stop.prevent="isNoteClicked('txt')" 
        v-show="isTxtClicked">
        <textarea  @blur="editValue('txt',$event)" 
        class="txt-note-textarea" 
@@ -49,7 +49,7 @@ export default {
             if (whatToEdit === 'txt') {
                 this.note.info.txt = ev.target.value
                 this.isTxtClicked = false
-            } else {
+            } else if ('title') {
                 this.note.info.title = ev.target.value
                 this.isTitleClicked = false
             }
@@ -78,7 +78,8 @@ export default {
                 Promise.resolve().then(() => {
                     document.querySelector('.txt-note-textarea').focus()
                 })
-            } else {
+            } else if (whatToEdit === 'title') {
+                console.log(whatToEdit);
                 this.isTitleClicked = true
                 Promise.resolve().then(() => {
                     document.querySelector('.title-input').focus()
