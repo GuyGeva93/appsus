@@ -6,8 +6,12 @@ export const keepService = {
     save,
     getById,
     getNoteTypeFormat,
-    update
+    update,
+    queryPinned,
+    savePinned
 }
+const gPinnedNotes = []
+const PINNED_NOTES_KEY = 'pinned notes'
 const NOTES_KEY = 'notes';
 const gNotes = [{
         id: storageService._makeId(),
@@ -17,7 +21,7 @@ const gNotes = [{
             txt: "Fullstack Me Baby!"
         },
         style: {
-            backgroundColor: _createRandColor()
+            backgroundColor: _getDarkColor()
         }
     },
     {
@@ -29,7 +33,7 @@ const gNotes = [{
             title: "Me playing Mi"
         },
         style: {
-            backgroundColor: _createRandColor()
+            backgroundColor: _getDarkColor()
         }
     },
     {
@@ -44,7 +48,7 @@ const gNotes = [{
             ]
         },
         style: {
-            backgroundColor: _createRandColor()
+            backgroundColor: _getDarkColor()
         }
     }
 ];
@@ -62,7 +66,7 @@ function getNoteTypeFormat(type) {
                     txt: ''
                 },
                 style: {
-                    backgroundColor: _createRandColor()
+                    backgroundColor: _getDarkColor()
                 }
             }
             break;
@@ -76,7 +80,7 @@ function getNoteTypeFormat(type) {
                     title: ""
                 },
                 style: {
-                    backgroundColor: _createRandColor()
+                    backgroundColor: _getDarkColor()
                 }
             };
             break;
@@ -90,7 +94,7 @@ function getNoteTypeFormat(type) {
                     todos: []
                 },
                 style: {
-                    backgroundColor: _createRandColor()
+                    backgroundColor: _getDarkColor()
                 }
             }
             break;
@@ -104,14 +108,13 @@ function getNoteTypeFormat(type) {
                     url: "",
                 },
                 style: {
-                    backgroundColor: _createRandColor()
+                    backgroundColor: _getDarkColor()
                 }
             }
             break;
 
     }
     return Promise.resolve(cmp).then(res => {
-        console.log(res);
         return res
     });
 }
@@ -131,12 +134,28 @@ function query() {
     })
 }
 
+function queryPinned() {
+    return storageService.queryNotes(PINNED_NOTES_KEY).then(res => {
+        if (!res.length || !res) {
+            console.log('accessed "cash"');
+            storageService.postMany(PINNED_NOTES_KEY, gPinnedNotes)
+            return gPinnedNotes
+        } else {
+            return res
+        }
+    })
+}
+
 function remove(noteId) {
     return storageService.remove(NOTES_KEY, noteId);
 }
 
 function save(note) {
     return storageService.post(NOTES_KEY, note);
+}
+
+function savePinned(note) {
+    return storageService.post(PINNED_NOTES_KEY, note);
 }
 
 function update(note) {
@@ -146,8 +165,11 @@ function update(note) {
 function getById(notesId) {
     return storageService.get(NOTES_KEY, notesId);
 }
-//need to find a function with less colors
-function _createRandColor() {
-    const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-    return randomColor
+
+function _getDarkColor() {
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += Math.floor(Math.random() * 10);
+    }
+    return color;
 }
