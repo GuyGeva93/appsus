@@ -7,45 +7,42 @@ import mailCompose from './apps/mail/cmps/mail-compose.js'
 
 
 const routes = [{
-    path: '/',
-    component: homePage
+  path: '/',
+  component: homePage
 },
 {
-    path: '/mail',
-    component: mailApp,
-    children: [{
-        path: '/mail',
-        component: mailList
+  path: '/mail',
+  component: mailApp,
+  children: [
+    {
+      path: '/sent',
+      component: mailList
     },
     {
-        path: '/sent',
-        component: mailList
+      path: '/draft',
+      component: mailList
     },
     {
-        path: '/draft',
-        component: mailList
-    },
-    {
-        path: '/star',
-        component: mailList
+      path: '/star',
+      component: mailList
     }
-    ]
+  ]
 },
 {
-    path: '/mail-preview',
-    component: mailPreview
+  path: '/mail-preview',
+  component: mailPreview
 },
 {
-    path: '/mail-list',
-    component: mailList
+  path: '/mail-list',
+  component: mailList
 },
 {
-    path: '/mail-compose',
-    component: mailCompose
+  path: '/mail-compose',
+  component: mailCompose
 },
 {
-    path: '/keep',
-    component: noteApp
+  path: '/keep',
+  component: noteApp
 }
 ]
 

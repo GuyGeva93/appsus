@@ -1,11 +1,10 @@
 import colorPalette from "./color-palette.js"
-// import { eventBus } from "../../../services/event-bus-service.js"
 import { keepService } from "../services/keep-service.js"
 export default {
     components: {
         colorPalette,
-        // eventBus
     },
+
     props: ['note'],
     template: `
     <div class="note txt note-preview" :style="{backgroundColor: selectedColor}" :id="note.id">

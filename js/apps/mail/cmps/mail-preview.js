@@ -5,9 +5,9 @@ export default {
   props: ['mail'],
 
   template: `
-    <mail-expand :mail="mail" v-if="isExpand" @click.native="mailExpand"/>
+    <mail-expand :mail="mail" v-if="isExpand" @editDraft="editDraft" @mailCompress="toggleExpand"/>
     <section v-else class="mail-preview" :class="{read: mail.isRead, unread:!mail.isRead}" >
-      <tr  @click.stop="mailExpand" class="mail-preview-container" >
+      <tr @click.stop="toggleExpand" class="mail-preview-container" >
         <td>{{mail.from}}</td>
         <td class="mail-preview-subject-td">{{mail.subject}}
           <span class="mail-preview-teaser">{{bodyTeaser}}</span>
@@ -25,10 +25,13 @@ export default {
   },
 
   methods: {
-    mailExpand() {
+    toggleExpand() {
       this.isExpand = !this.isExpand
       this.mail.isRead = true
     },
+    editDraft() {
+      console.log('EDIT DRAFT -> mail-preview');
+    }
 
   },
   computed: {
