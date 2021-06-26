@@ -1,0 +1,36 @@
+/* home page */
+
+@media (max-width: 600px) {
+    .app-header {
+        width: 100%;
+    }
+    .home-page p {
+        font-size: 1rem;
+    }
+    .bg {
+        animation: none !important;
+        display: none;
+    }
+    .bulb-img {
+        display: none;
+    }
+    .note-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .note-btns {
+        opacity: 1
+    }
+    .note-txt input,
+    .note-img input,
+    .note-vid input,
+    .note-todos input {
+        min-width: none;
+        width: 330px;
+    }
+    .note-txt textarea {
+        min-width: none;
+        width: 330px;
+    }
+}

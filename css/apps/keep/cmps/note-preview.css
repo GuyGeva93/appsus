@@ -103,3 +103,10 @@
 .pinned {
     box-shadow: 2px 4px 4px 5px black;
 }
+
+.btn-add-single-todo {
+    background-color: gold;
+    height: 40px;
+    width: 80px;
+    margin-bottom: 5px;
+}

@@ -6,8 +6,8 @@ export default {
         <br>
         <input v-model="todos.label" name="todos-note" placeholder="insert text Here..." @blur="returnTxt" />
         <br>
-        <input ref="add-todo-input" v-model="todos.todos.txt" name="todos-note" placeholder="insert TODO with 'Add Todo' and press 'Add note' when you're done..." @blur="returnTxt" />
-        <button @click.stop.prevent="addTodo" class="add-todo">Add Todo</button>
+        <input ref="add-todo-input" v-model="todos.todos.txt" name="todos-note" placeholder="press 'Add Todo' then 'Add note' when you're done..." @blur="returnTxt" />
+        <button @click.stop.prevent="addTodo" class="btn-add-single-todo">Add Todo</button>
     </label>
     </div>
     `,

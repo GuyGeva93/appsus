@@ -1,9 +1,12 @@
+@import '../css/animate.css';
+
 /* main imports */
 
 @import '../css/cmps/home-page.css';
 @import '../css/cmps/user-msg.css';
 @import '../css/pages/app-header.css';
 @import '../css/pages/app-footer.css';
+
 /* mail imports */
 
 @import './cmps/main-nav.css';
@@ -13,20 +16,22 @@
 @import '../css/apps/mail/cmps/mail-preview.css';
 @import '../css/apps/mail/cmps/mail-list.css';
 @import '../css/apps/mail/cmps/mail-compose.css';
+
 /* keep imports */
 
 @import '../css/apps/keep/keep-app.css';
 @import '../css/apps/keep/cmps/note-list.css';
 @import './apps/keep/cmps/note-preview.css';
 @import './apps/keep/cmps/color-palette.css';
-/* TODO:add dark mode */
 
 /* FONTS */
 
+@import './pages/media-queries.css';
 @font-face {
     font-family: Mate-SC;
     src: url('../fonts/Mate-SC/MateSC-Regular.ttf');
 }
+
 
 /* GENERAL ELEMENTS */
 
@@ -47,6 +52,7 @@ a:hover {
 a:visited {
     color: #2e2e2e;
 }
+
 
 /* body .dark {
     background-color: #3e3e3e;
@@ -69,7 +75,10 @@ button {
     cursor: pointer;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     margin: 0;
 }
 
@@ -77,14 +86,18 @@ html {
     min-height: 100vh;
 }
 
+
 /* failed attempts to fix jumping scroll bar by this blog in the adress bellow*/
 
+
 /* https://aykevl.nl/2014/09/fix-jumping-scrollbar */
+
 
 /* html {
     margin-left: calc(100vw - 100%);
     margin-right: 0;
 } */
+
 
 /* @media screen and (min-width: 960px) {
     html {
@@ -93,9 +106,12 @@ html {
     }
 } */
 
+
 /* ====================== */
 
+
 /* darkmode button */
+
 
 /* ul.tg.list {
     vertical-align: middle;
@@ -173,7 +189,9 @@ html {
     background: #1e201f;
 } */
 
+
 /* ====================== */
+
 
 /* HELPERS */
 
@@ -183,7 +201,10 @@ html {
     padding: 0;
 }
 
-.fa-envelope, .fa-envelope-open, .far.fa-star, .fa-trash-alt {
+.fa-envelope,
+.fa-envelope-open,
+.far.fa-star,
+.fa-trash-alt {
     color: #3e3e3e;
 }
 
