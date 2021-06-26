@@ -4,13 +4,13 @@ import { keepService } from "../services/keep-service.js"
 
 
 export default {
-    components: {
-        eventBus,
-        colorPalette,
+  components: {
+    eventBus,
+    colorPalette,
 
-    },
-    props: ['note'],
-    template: `
+  },
+  props: ['note'],
+  template: `
     <div class="note vid note-preview" :style="{backgroundColor: selectedColor}">
     <div class="note vid" v-if="note.type === 'note-vid'" >
           <div class="note-content">
@@ -18,50 +18,51 @@ export default {
           </div>
         <div class="note-btns">
         <button @click="removeNote" class="remove">X</button>
-        <button @click="isPaletteOpen = !isPaletteOpen" class="colors"><i class="fa-solid fa-palette"></i></button>
+        <button @click="isPaletteOpen = !isPaletteOpen" class="colors"><i class="fas fa-palette"></i></button>
 
         <color-palette v-if="isPaletteOpen"  @selectColor="selectColor" :note="note"/>
          </div>
           </div>
     </div>
     `,
-    data() {
-        return {
-            type: 'notePreviewImg',
-            noteId: '',
-            backgroundColor: '',
-            isPaletteOpen: false
-        }
+  data() {
+    return {
+      type: 'notePreviewImg',
+      noteId: '',
+      backgroundColor: '',
+      isPaletteOpen: false
+    }
+  },
+  computed: {
+    selectedColor() {
+      return this.backgroundColor
+    }
+  },
+  methods: {
+    returnTxt() {
+      this.$emit('setNotePreview', this.type)
     },
-    computed: {
-        selectedColor() {
-            return this.backgroundColor
-        }
+    removeNote() {
+      this.$emit('removeNote', this.note.id)
     },
-    methods: {
-        returnTxt() {
-            this.$emit('setNotePreview', this.type)
-        },
-        removeNote() {
-            this.$emit('removeNote', this.note.id)
-        },
-        openColorPalette() {
-            this.$emit('openColorPalette', this.selectedBGC)
-        },
-        selectColor(color) {
-            this.backgroundColor = color
-            this.note.style.backgroundColor = color
-            keepService.update(this.note)
-                // eventBus.$emit('selectColor', color)
+    openColorPalette() {
+      this.$emit('openColorPalette', this.selectedBGC)
+    },
+    selectColor(color) {
+      this.backgroundColor = color
+      this.note.style.backgroundColor = color
+      keepService.update(this.note)
+      // eventBus.$emit('selectColor', color)
 
-            this.$emit('selectColor', color)
-        }
-    },
-    created() {
-        // console.log('notePreviewImg');
-        // console.log(this.note);
-        console.log(this.note.style.backgroundColor);
-    },
-    mounted() {;
-    },
+      this.$emit('selectColor', color)
+    }
+  },
+  created() {
+    // console.log('notePreviewImg');
+    // console.log(this.note);
+    console.log(this.note.style.backgroundColor);
+  },
+  mounted() {
+    ;
+  },
 }

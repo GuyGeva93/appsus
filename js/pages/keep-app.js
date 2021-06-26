@@ -22,19 +22,19 @@ export default {
     <section class="keep-app">
         <div class="type-buttons">
             <button id="note-txt"  @click="selectNoteType" class=" select-note select-txt" :class="{isActive: this.selectedType === 'note-txt'}">
-                <img id="note-txt" class="keep-icons" src="../img/txt-icon.png" >
+                <img id="note-txt" class="keep-icons" src="img/txt-icon.png" >
             </button>
 
             <button id="note-txt" @click="selectNoteType" class=" select-note select-img" :class="{isActive: this.selectedType=== 'note-img'}">
-                <img id="note-img" class="keep-icons" src="../img/img-icon.png" >
+                <img id="note-img" class="keep-icons" src="img/img-icon.png" >
             </button>
 
             <button id="note-txt" @click="selectNoteType" class=" select-note select-todos" :class="{isActive: this.selectedType=== 'note-todos'}">
-                <img id="note-todos" class="keep-icons" src="../img/todo-icon.png" >
+                <img id="note-todos" class="keep-icons" src="img/todo-icon.png" >
             </button>
 
             <button id="note-txt" @click="selectNoteType" class="select-note select-vid" :class="{isActive: this.selectedType=== 'note-vid'}">
-                <img id="note-vid" class="keep-icons" src="../img/video-icon.png" >
+                <img id="note-vid" class="keep-icons" src="img/video-icon.png" >
             </button>
 
         </div>
@@ -95,7 +95,7 @@ export default {
                         this.userNote.info.label = this.noteDetails.label
                         if (this.noteDetails.url.includes('youtube')) {
                             const videoId = this.getYouTubeEmbedUrl(this.noteDetails.url)
-                                // R9Kjatuf-oU
+                            // R9Kjatuf-oU
                             const iframeMarkup = '//www.youtube.com/embed/' +
                                 videoId;
                             this.userNote.info.url = iframeMarkup
@@ -123,13 +123,13 @@ export default {
         removeNote(noteId) {
             console.log('remove note (keepApp)', noteId);
             keepService.remove(noteId).then(() => {
-                    const msg = {
-                        txt: 'Note Removed successfuly',
-                        type: 'success'
-                    };
-                    eventBus.$emit('show-msg', msg);
-                    this.loadNotes();
-                })
+                const msg = {
+                    txt: 'Note Removed successfuly',
+                    type: 'success'
+                };
+                eventBus.$emit('show-msg', msg);
+                this.loadNotes();
+            })
                 .catch(err => {
                     console.log(err);
                     const msg = {

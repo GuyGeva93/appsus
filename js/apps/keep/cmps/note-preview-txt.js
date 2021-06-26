@@ -23,7 +23,7 @@ export default {
       </div>
         <div class="note-btns">
     <button @click="removeNote" class="remove">X</button>
-    <button @click="isPaletteOpen = !isPaletteOpen" class="colors fa-solid fa-palette"></button>
+    <button @click="isPaletteOpen = !isPaletteOpen" class="colors fas fa-palette"></button>
     <color-palette v-if="isPaletteOpen"  @selectColor="selectColor" :note="note"/>
         </div>
     </div>
@@ -68,7 +68,7 @@ export default {
             this.backgroundColor = color
             this.note.style.backgroundColor = color
             keepService.update(this.note)
-                // eventBus.$emit('selectColor', color)
+            // eventBus.$emit('selectColor', color)
 
             this.$emit('selectColor', color)
         },
