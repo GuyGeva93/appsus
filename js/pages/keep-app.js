@@ -64,7 +64,6 @@ export default {
         loadNotes() {
             keepService.query().then(res => {
                 this.cmps = res
-                console.log(this.cmps);
             })
         },
         selectNoteType(ev) {
@@ -95,7 +94,7 @@ export default {
                         this.userNote.info.label = this.noteDetails.label
                         if (this.noteDetails.url.includes('youtube')) {
                             const videoId = this.getYouTubeEmbedUrl(this.noteDetails.url)
-                            // R9Kjatuf-oU
+                                // R9Kjatuf-oU
                             const iframeMarkup = '//www.youtube.com/embed/' +
                                 videoId;
                             this.userNote.info.url = iframeMarkup
@@ -123,13 +122,13 @@ export default {
         removeNote(noteId) {
             console.log('remove note (keepApp)', noteId);
             keepService.remove(noteId).then(() => {
-                const msg = {
-                    txt: 'Note Removed successfuly',
-                    type: 'success'
-                };
-                eventBus.$emit('show-msg', msg);
-                this.loadNotes();
-            })
+                    const msg = {
+                        txt: 'Note Removed successfuly',
+                        type: 'success'
+                    };
+                    eventBus.$emit('show-msg', msg);
+                    this.loadNotes();
+                })
                 .catch(err => {
                     console.log(err);
                     const msg = {

@@ -61,7 +61,7 @@ export default {
             this.backgroundColor = color
             this.note.style.backgroundColor = color
             keepService.update(this.note)
-            // eventBus.$emit('selectColor', color)
+                // eventBus.$emit('selectColor', color)
 
             this.$emit('selectColor', color)
         },
@@ -69,9 +69,5 @@ export default {
             this.isDone = !this.isDone
         }
     },
-    created() {
-        // console.log('notePreviewTodos');
-        // console.log(this.note);
-        console.log(this.note.style.backgroundColor);
-    },
+    created() {},
 }
